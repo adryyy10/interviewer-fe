@@ -10,6 +10,7 @@ const QuestionPage = () => {
             const response = await fetchQuestions();
             setQuestions(response.data['hydra:member']);
         };
+        getQuestions();
     }, []);
 
     return (
