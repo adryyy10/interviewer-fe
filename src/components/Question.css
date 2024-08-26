@@ -1,0 +1,33 @@
+.question-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+.question-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.question-answers {
+    list-style: none;
+    padding: 0;
+}
+
+.question-answers li {
+    padding: 10px 20px;
+    margin: 5px 0;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.question-answers li:hover {
+    background-color: #cb99d4;
+}
