@@ -28,6 +28,16 @@
     transition: background-color 0.3s ease;
 }
 
+.answer.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.answer.incorrect {
+    background-color: #f44336;
+    color: white;
+}
+
 .question-answers li:hover {
     background-color: #cb99d4;
 }
