@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchQuestions } from '../services/api';
-import Question from '../components/Question';
+import Question from './Question';
 import './QuestionPage.css';
 
 const QuestionPage = () => {
