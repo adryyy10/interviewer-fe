@@ -1,20 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './MainPage.css';
 
-const Layout = () => {
+const MainPage = () => {
   return (
-    <div>
-      <h1>Question Management</h1>
-      {/*
-      <Link to="/create">
-        <button>Create New Question</button>
-      </Link>
-      */}
+    <div className="main-container">
+      <h1 className="main-title">Interviewer</h1>
       <Link to="/questions">
-        <button>View Questions</button>
+        <button className="main-button">View Questions</button>
       </Link>
     </div>
   );
 };
 
-export default Layout;
+export default MainPage;

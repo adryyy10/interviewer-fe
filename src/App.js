@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateQuestionForm from './components/CreateQuestionForm';
 import QuestionPage from './components/QuestionPage';
 import MainPage from './components/MainPage';
+import './App.css';
 
 const App = () => {
   return (
