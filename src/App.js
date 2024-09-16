@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateQuestionForm from './components/CreateQuestionForm';
 import QuestionPage from './components/QuestionPage';
 import MainPage from './components/MainPage';
-import AdminPage from './components/AdminPage';
+import AdminQuestions from './components/AdminQuestions';
 import AuthForm from './components/AuthForm';
 import './App.css';
 
@@ -15,10 +15,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route
-          path="/admin"
+          path="/admin/questions"
           element={
             isAuthenticated ? (
-              <AdminPage />
+              <AdminQuestions />
             ) : (
               <AuthForm setIsAuthenticated={setIsAuthenticated} />
             )
