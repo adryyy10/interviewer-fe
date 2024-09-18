@@ -1,0 +1,65 @@
+.admin-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.admin-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+  
+.add-user-button {
+  background-color: #80669d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.add-user-button:hover {
+  background-color: #6c429c;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.admin-table th,
+.admin-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #80669d;
+  color: white;
+  font-weight: bold;
+}
+
+.admin-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.admin-table tr:hover {
+  background-color: #e9ecef;
+  transition: background-color 0.3s ease;
+}
+  

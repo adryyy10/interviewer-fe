@@ -5,6 +5,7 @@ import QuestionPage from './components/QuestionPage';
 import MainPage from './components/MainPage';
 import AdminQuestions from './components/AdminQuestions';
 import AuthForm from './components/AuthForm';
+import AdminUsers from './components/AdminUsers';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('apiKey') !== null);
@@ -28,6 +29,16 @@ const App = () => {
           element={
             isAuthenticated ? (
               <CreateQuestionForm />
+            ) : (
+              <AuthForm setIsAuthenticated={setIsAuthenticated} />
+            )
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            isAuthenticated ? (
+              <AdminUsers />
             ) : (
               <AuthForm setIsAuthenticated={setIsAuthenticated} />
             )
