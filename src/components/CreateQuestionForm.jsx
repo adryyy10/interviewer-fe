@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { createQuestion } from '../services/api'; // Adjust the path if needed
+import { createQuestion } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+import './CreateQuestionForm.css';
 
 const CreateQuestionForm = () => {
-  // State variables for form fields
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // Function to handle form submission
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     const data = {
       content,
@@ -18,22 +20,24 @@ const CreateQuestionForm = () => {
     };
 
     try {
-      // Use the createQuestion function from your API client
-      await createQuestion(data); 
+      await createQuestion(data);
 
       setSuccess('Question created successfully!');
-      setContent(''); // Reset the form fields
+      setContent('');
       setCategory('');
+
+      navigate('/admin/questions');
+
     } catch (error) {
       setError('An error occurred: ' + (error.response?.data?.message || error.message));
     }
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Create a New Question</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+      {error && <p>{error}</p>}
+      {success && <p className="success">{success}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="content">Content:</label>

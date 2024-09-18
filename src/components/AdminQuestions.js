@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAdminQuestions } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 import './AdminQuestions.css';
 
 const AdminQuestions = () => {
   const [questions, setQuestions] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getQuestions = async () => {
@@ -13,9 +15,18 @@ const AdminQuestions = () => {
     getQuestions();
   }, []);
 
+  const handleAddQuestionClick = () => {
+    navigate('/admin/questions/create');
+  };
+
   return (
     <div className="admin-container">
-      <h2 className="admin-title">Questions</h2>
+      <div className="admin-header">
+        <h2 className="admin-title">Questions</h2>
+        <button className="add-question-button" onClick={handleAddQuestionClick}>
+          Add Question
+        </button>
+      </div>
       <table className="admin-table">
         <thead>
           <tr>

@@ -11,6 +11,7 @@ const getEncodedApiKey = () => {
 
 const config = {
   headers: {
+    'Content-Type':  'application/ld+json',
     'Authorization': `Basic ${getEncodedApiKey()}`,
   },
 }
@@ -26,10 +27,12 @@ export const Auth = (encodedCredentials) =>
 
 export const fetchAdminQuestions = () => api.get('/admin/questions', config);
 
+export const fetchAdminUsers = () => api.get('/admin/users', config);
+
 export const fetchQuestion = (id) => api.get(`/questions/${id}`);
 
 export const fetchQuestions = () => api.get('/questions');
 
 // POST
-export const createQuestion = (data) => api.post('/questions', data, config);
+export const createQuestion = (data) => api.post('/admin/questions', data, config);
 
