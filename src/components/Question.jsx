@@ -8,7 +8,7 @@ const Question = ({ question }) => {
 
     const handleAnswerClick = (answer) => {
         setSelectedAnswer(answer);
-        setIsCorrect(answer.isCorrect);
+        setIsCorrect(answer.correct);
     };
 
     // Reset state when a new question is displayed
