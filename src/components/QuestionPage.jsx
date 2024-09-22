@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { fetchQuestions } from '../services/api';
+import React, { useState } from 'react';
+import useQuestions from '../hooks/useQuestions';
 import Question from './Question';
 import './QuestionPage.css';
 
 const QuestionPage = () => {
-    const [questions, setQuestions] = useState([]);
+    const { questions, loading, error } = useQuestions(); // Use custom hook
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-    useEffect(() => {
-        const getQuestions = async () => {
-            const response = await fetchQuestions();
-            setQuestions(response.data['hydra:member']);
-        };
-        getQuestions();
-    }, []);
 
     const handleNext = () => {
         if (currentQuestionIndex < questions.length - 1) {
@@ -21,15 +13,18 @@ const QuestionPage = () => {
         }
     };
 
-    
     const handlePrevious = () => {
         if (currentQuestionIndex > 0) {
             setCurrentQuestionIndex(currentQuestionIndex - 1);
         }
     };
+
+    if (loading) return <div className="loading-container">Loading questions...</div>;
+    if (error) return <div className="loading-container">{error}</div>;
+
     return (
         <div className="question-page-container">
-            {questions.length > 0 && (
+            {questions.length > 0 ? (
                 <div>
                     <Question key={questions[currentQuestionIndex].id} question={questions[currentQuestionIndex]} />
                     <div className="button-container">
@@ -37,6 +32,8 @@ const QuestionPage = () => {
                         <button onClick={handleNext}>Next</button>
                     </div>
                 </div>
+            ) : (
+                <div className="loading-container">No questions available for this category.</div>
             )}
         </div>
     );

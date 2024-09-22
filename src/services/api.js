@@ -31,7 +31,7 @@ export const fetchAdminUsers = () => api.get('/admin/users', config);
 
 export const fetchQuestion = (id) => api.get(`/questions/${id}`);
 
-export const fetchQuestions = () => api.get('/questions');
+export const fetchQuestions = (category) => api.get(category ? `/questions?category=${category}` : '/questions');
 
 // POST
 export const createQuestion = (data) => api.post('/admin/questions', data, config);
