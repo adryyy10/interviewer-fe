@@ -7,14 +7,24 @@
     transition: background-color 0.3s ease;
 }
 
-.answer.correct {
+.answer:hover {
+    background-color: #cb99d4;
+}
+
+.answer.correct,
+.answer.highlight-correct {
     background-color: #d4edda;
-    color: #4CAF50;
     border-color: #c3e6cb;
+    border: 1px solid #2e9131;
 }
 
 .answer.incorrect {
     background-color: #f8d7da;
-    color: #721c24;
     border-color: #f5c6cb;
+    border: 1px solid #d0091d;
+}
+
+.answer.disabled {
+    pointer-events: none; /* Disable clicking */
+    cursor: default; /* Change cursor to default */
 }
