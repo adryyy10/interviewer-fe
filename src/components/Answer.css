@@ -1,13 +1,17 @@
 .answer {
     cursor: pointer;
-    padding: 10px 20px;
-    margin: 5px 0;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    margin-bottom: 5px;
+    transition: background-color 0.3s;
 }
 
-.answer.correct {
+.answer:hover {
+    background-color: #cb99d4;
+}
+
+.answer.correct,
+.answer.highlight-correct {
     background-color: #d4edda;
     color: #4CAF50;
     border-color: #c3e6cb;
@@ -17,4 +21,9 @@
     background-color: #f8d7da;
     color: #721c24;
     border-color: #f5c6cb;
+}
+
+.answer.disabled {
+    pointer-events: none; /* Disable clicking */
+    cursor: default; /* Change cursor to default */
 }

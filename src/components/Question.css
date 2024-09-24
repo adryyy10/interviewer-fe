@@ -19,10 +19,6 @@
     padding: 0;
 }
 
-.question-answers li:hover {
-    background-color: #cb99d4;
-}
-
 .selected-answer-explanation {
     margin-top: 15px;
     padding: 10px;

@@ -13,8 +13,6 @@ const useQuestions = () => {
         const { category } = queryString.parse(location.search);
 
         const getQuestions = async () => {
-            setLoading(true);
-            setError(null);
             try {
                 const response = await fetchQuestions(category || null);
                 setQuestions(response.data['hydra:member']);

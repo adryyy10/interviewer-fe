@@ -4,7 +4,7 @@ import Question from './Question';
 import './QuestionPage.css';
 
 const QuestionPage = () => {
-    const { questions, loading, error } = useQuestions(); // Use custom hook
+    const { questions, loading, error } = useQuestions();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
     const handleNext = () => {
