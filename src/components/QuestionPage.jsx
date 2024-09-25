@@ -7,18 +7,6 @@ const QuestionPage = () => {
     const { questions, loading, error } = useQuestions();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-    const handleNext = () => {
-        if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
-        }
-    };
-
-    const handlePrevious = () => {
-        if (currentQuestionIndex > 0) {
-            setCurrentQuestionIndex(currentQuestionIndex - 1);
-        }
-    };
-
     if (loading) return <div className="loading-container">Loading questions...</div>;
     if (error) return <div className="loading-container">{error}</div>;
 
@@ -26,10 +14,23 @@ const QuestionPage = () => {
         <div className="question-page-container">
             {questions.length > 0 ? (
                 <div>
-                    <Question key={questions[currentQuestionIndex].id} question={questions[currentQuestionIndex]} />
+                    <Question
+                        question={questions[currentQuestionIndex]} 
+                        currentQuestionIndex={currentQuestionIndex + 1}
+                        totalQuestions={questions.length}
+                    />
                     <div className="button-container">
-                        <button onClick={handlePrevious}>Previous</button>
-                        <button onClick={handleNext}>Next</button>
+                        <button 
+                            onClick={() => setCurrentQuestionIndex(currentQuestionIndex -1)} 
+                            disabled={currentQuestionIndex === 0}>
+                            Previous
+                        </button>
+                        <button 
+                            onClick={() => setCurrentQuestionIndex(currentQuestionIndex +1)} 
+                            disabled={currentQuestionIndex === questions.length - 1}
+                        >
+                            Next
+                        </button>
                     </div>
                 </div>
             ) : (
