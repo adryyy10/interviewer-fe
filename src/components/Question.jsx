@@ -2,19 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './Question.css';
 import Answer from './Answer';
 
-const Question = ({ question }) => {
+const Question = ({ question, currentQuestionIndex, totalQuestions }) => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [isCorrect, setIsCorrect] = useState(null);
     const [attempted, setAttempted] = useState(false);
-    const [correctAnswer, setCorrectAnswer] = useState(null);
+    const correctAnswer = question.answers.find((ans) => ans.correct);
 
-    // Find the correct answer when the question changes
+    // Reset state when a new question is displayed
     useEffect(() => {
-        setCorrectAnswer(question.answers.find((ans) => ans.correct));
-
-        // Reset state when a new question is displayed
         setSelectedAnswer(null);
-        setIsCorrect(null);
         setAttempted(false);
     }, [question]);
 
@@ -22,13 +17,15 @@ const Question = ({ question }) => {
         if (attempted) return;
 
         setSelectedAnswer(answer);
-        setIsCorrect(answer.correct);
         setAttempted(true);
     };
 
     return (
         <div className="question-container">
-            <h3 className="question-title">{question.content}</h3>
+            <div className="question-header">
+                <h3 className="question-title">{question.content}</h3>
+                <span className="question-counter">{currentQuestionIndex}/{totalQuestions}</span>
+            </div>
             <ul className={`question-answers ${attempted ? 'disabled' : ''}`}>
                 {question.answers.map((answer, index) => (
                     <Answer
@@ -42,8 +39,8 @@ const Question = ({ question }) => {
             </ul>
 
             {attempted && (
-                <div className="selected-answer-explanation">
-                    {correctAnswer.explanation} {/* Show the explanation of the correct answer */}
+                <div className="correct-answer-explanation">
+                    {correctAnswer.explanation}
                 </div>
             )}
         </div>
