@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Question.css';
 import Answer from './Answer';
 
-const Question = ({ question, currentQuestionIndex, totalQuestions }) => {
+const Question = ({ question, currentQuestionIndex, totalQuestions, onAnswer }) => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [attempted, setAttempted] = useState(false);
     const correctAnswer = question.answers.find((ans) => ans.correct);
@@ -18,6 +18,9 @@ const Question = ({ question, currentQuestionIndex, totalQuestions }) => {
 
         setSelectedAnswer(answer);
         setAttempted(true);
+        if (onAnswer) {
+            onAnswer(answer); // Pass the selected answer back to QuestionPage
+        }
     };
 
     return (
