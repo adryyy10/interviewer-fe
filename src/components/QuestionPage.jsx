@@ -4,6 +4,7 @@ import Question from './Question';
 import Score from './Score';
 import './QuestionPage.css';
 
+
 const QuestionPage = () => {
     const { questions, loading, error } = useQuestions();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -40,7 +41,7 @@ const QuestionPage = () => {
                             </button>
                             {currentQuestionIndex < questions.length - 1 ? (
                                 <button 
-                                onClick={() => setCurrentQuestionIndex(currentQuestionIndex +1)}>
+                                    onClick={() => setCurrentQuestionIndex(currentQuestionIndex +1)}>
                                     Next
                                 </button>
                             ) : (
