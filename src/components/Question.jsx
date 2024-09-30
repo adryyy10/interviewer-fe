@@ -41,7 +41,7 @@ const Question = ({ question, currentQuestionIndex, totalQuestions, onAnswer }) 
                 ))}
             </ul>
 
-            {attempted && (
+            {attempted && correctAnswer && correctAnswer.explanation && (
                 <div className="correct-answer-explanation">
                     {correctAnswer.explanation}
                 </div>

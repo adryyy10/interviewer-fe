@@ -8,46 +8,46 @@ import AuthForm from './components/AuthForm';
 import AdminUsers from './components/AdminUsers';
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('apiKey') !== null);
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('apiKey') !== null);
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route
-          path="/admin/questions"
-          element={
-            isAuthenticated ? (
-              <AdminQuestions />
-            ) : (
-              <AuthForm setIsAuthenticated={setIsAuthenticated} />
-            )
-          }
-        />
-        <Route
-          path="/admin/questions/create"
-          element={
-            isAuthenticated ? (
-              <CreateQuestionForm />
-            ) : (
-              <AuthForm setIsAuthenticated={setIsAuthenticated} />
-            )
-          }
-        />
-        <Route
-          path="/admin/users"
-          element={
-            isAuthenticated ? (
-              <AdminUsers />
-            ) : (
-              <AuthForm setIsAuthenticated={setIsAuthenticated} />
-            )
-          }
-        />
-        <Route path="/questions" element={<QuestionPage />} />
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route
+                    path="/admin/questions"
+                    element={
+                        isAuthenticated ? (
+                            <AdminQuestions />
+                        ) : (
+                            <AuthForm setIsAuthenticated={setIsAuthenticated} />
+                        )
+                    }
+                />
+                <Route
+                    path="/admin/questions/create"
+                    element={
+                        isAuthenticated ? (
+                            <CreateQuestionForm />
+                        ) : (
+                            <AuthForm setIsAuthenticated={setIsAuthenticated} />
+                        )
+                    }
+                />
+                <Route
+                    path="/admin/users"
+                    element={
+                        isAuthenticated ? (
+                            <AdminUsers />
+                        ) : (
+                            <AuthForm setIsAuthenticated={setIsAuthenticated} />
+                        )
+                    }
+                />
+                <Route path="/questions" element={<QuestionPage />} />
+            </Routes>
+        </Router>
+    );
 };
 
 export default App;

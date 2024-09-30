@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './MainPage.css';
 
 const MainPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
     const navigate = useNavigate();
 
     const categories = ['All', 'PHP', 'JS', 'Python', 'Java'];
@@ -25,24 +25,27 @@ const MainPage = () => {
     };
 
     return (
-        <div className="main-container">
+        <main className="main-container">
             <h1 className="main-title">Interviewer</h1>
-            <select 
-                className="category-select" 
-                value={selectedCategory} 
-                onChange={handleCategoryChange}
-            >
-                <option value="">Select Category</option>
-                {categories.map((category) => (
-                    <option key={category} value={category}>
-                        {category}
-                    </option>
-                ))}
-            </select>
-            <button className="main-button" onClick={handleStartQuestionnaire}>
-              Start Questionnaire
-            </button>
-        </div>
+            <form className='main-form'>
+                <label htmlFor="category-select" className="category-label">Select Category:</label>
+                <select
+                    id="category-select"
+                    className="category-select"
+                    value={selectedCategory}
+                    onChange={handleCategoryChange}
+                >
+                    {categories.map((category) => (
+                        <option key={category} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
+                <button type="button" className="main-button" onClick={handleStartQuestionnaire}>
+                    Start Questionnaire
+                </button>
+            </form>
+        </main>
     );
 };
 
