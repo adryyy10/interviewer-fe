@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { fetchAdminQuestions } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import './AdminQuestions.css';
+import { useAuth } from '../hooks/AuthProvider';
 
 const AdminQuestions = () => {
     const [questions, setQuestions] = useState([]);
     const navigate = useNavigate();
+    const auth = useAuth();
 
     useEffect(() => {
         const getQuestions = async () => {
@@ -23,6 +25,9 @@ const AdminQuestions = () => {
         <div className="admin-container">
             <div className="admin-header">
                 <h2 className="admin-title">Questions</h2>
+                <button className="add-question-button" onClick={() => auth.logOut()}>
+                    logout
+                </button>
                 <button className="add-question-button" onClick={handleAddQuestionClick}>
                   Add Question
                 </button>
