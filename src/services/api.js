@@ -36,3 +36,10 @@ export const fetchQuestions = (category) => api.get(category ? `/questions?categ
 // POST
 export const createQuestion = (data) => api.post('/admin/questions', data, config);
 
+
+export const signup = (data) =>
+    api.post('/signup', data, {
+        headers: {
+            'Content-Type':  'application/ld+json',
+        },
+    });

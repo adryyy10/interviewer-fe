@@ -8,6 +8,8 @@ import AdminUsers from './components/AdminUsers';
 import AuthProvider from './hooks/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './components/Login';
+import Signup from './components/Signup';
+import Dashboard from './components/Dashboard';
 
 const App = () => {
 
@@ -17,6 +19,13 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route element={<PrivateRoute />}>
+                        <Route
+                            path="/dashboard"
+                            element={<Dashboard /> }
+                        />
+                    </Route>
                     <Route element={<PrivateRoute />}>
                         <Route
                             path="/admin/questions"

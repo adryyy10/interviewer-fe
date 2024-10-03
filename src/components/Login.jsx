@@ -1,8 +1,8 @@
-// src/components/Login.jsx
-
 import { useState } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 import "./Login.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [input, setInput] = useState({
@@ -15,6 +15,7 @@ const Login = () => {
         password: "",
     });
 
+    const [showPassword, setShowPassword] = useState(false);
     const auth = useAuth();
 
     // Function to handle input changes
@@ -67,6 +68,11 @@ const Login = () => {
         }
     };
 
+    // Function to toggle password visibility
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
+    };
+
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit} noValidate>
@@ -92,18 +98,32 @@ const Login = () => {
                     )}
                 </div>
 
-                <div className="form-control">
+                <div className="form-control password-control">
                     <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={input.password}
-                        onChange={handleInputChange}
-                        aria-describedby="password-error"
-                        aria-invalid={errors.password ? "true" : "false"}
-                        required
-                    />
+                    <div className="password-input-wrapper">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            id="password"
+                            name="password"
+                            value={input.password}
+                            onChange={handleInputChange}
+                            aria-describedby="password-error"
+                            aria-invalid={errors.password ? "true" : "false"}
+                            required
+                        />
+                        <button
+                            type="button"
+                            className="password-toggle-btn"
+                            onClick={togglePasswordVisibility}
+                            aria-label={
+                                showPassword
+                                    ? "Hide password"
+                                    : "Show password"
+                            }
+                        >
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                    </div>
                     {errors.password && (
                         <span id="password-error" className="error-message">
                             {errors.password}
@@ -114,6 +134,11 @@ const Login = () => {
                 <button type="submit" className="btn-submit">
                     Submit
                 </button>
+
+                <p className="toggle-auth">
+                    Don't have an account?{" "}
+                    <Link className="toggle-auth-a" to="/signup">Signup here</Link>.
+                </p>
             </form>
         </div>
     );
