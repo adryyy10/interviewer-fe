@@ -1,6 +1,7 @@
 @import "./Form.css";
 
-.login-container {
+/* Container to center the form */
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +10,8 @@
     padding: 20px;
 }
 
-.login-form {
+/* Form styling */
+.signup-form {
     background-color: #ffffff;
     padding: 2rem 2.5rem;
     border-radius: 8px;
@@ -18,6 +20,7 @@
     max-width: 400px;
 }
 
+/* Form title */
 .form-title {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -25,26 +28,24 @@
     color: #333333;
 }
 
-.btn-submit {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #80669d;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Form control styling */
+.form-control {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.btn-submit:hover {
-    background-color: #6c429c;
+/* Toggle between Login and Signup */
+.toggle-auth {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555555;
 }
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
-    .login-form {
+    .signup-form {
         padding: 1.5rem 1.75rem;
     }
 
