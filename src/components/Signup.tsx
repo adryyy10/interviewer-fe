@@ -1,31 +1,26 @@
-// src/components/Signup.jsx
-
-import { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent, FC } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 import "./Signup.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { SignupData, FormErrors } from "../types";
+import { Routes } from "../constants/routes";
 
-const Signup = () => {
-    const [input, setInput] = useState({
+const Signup: FC = () => {
+    const [input, setInput] = useState<SignupData>({
         username: "",
         email: "",
         password: "",
         confirmPassword: "",
     });
 
-    const [errors, setErrors] = useState({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-    });
+    const [errors, setErrors] = useState<FormErrors>({});
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
     const auth = useAuth();
 
     // Handle input changes
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
         setInput((prev) => ({
             ...prev,
@@ -40,14 +35,14 @@ const Signup = () => {
     };
 
     // Validate form inputs
-    const validate = () => {
-        const newErrors = {};
+    const validate = (): boolean => {
+        const newErrors: FormErrors = {};
         let isValid = true;
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!input.username) {
-            newErrors.username = "username is required.";
+            newErrors.username = "Username is required.";
             isValid = false;
         }
 
@@ -80,16 +75,16 @@ const Signup = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
         if (validate()) {
-            auth.signupAction(input);
+            await auth.signupAction(input);
         }
     };
 
     // Toggle password visibility
-    const togglePasswordVisibility = () => {
+    const togglePasswordVisibility = (): void => {
         setShowPassword((prev) => !prev);
     };
 
@@ -105,7 +100,7 @@ const Signup = () => {
                         name="username"
                         value={input.username}
                         onChange={handleInputChange}
-                        aria-describedby="username-email-error"
+                        aria-describedby="signup-username-error"
                         aria-invalid={errors.username ? "true" : "false"}
                         required
                     />
@@ -208,7 +203,7 @@ const Signup = () => {
 
                 <p className="toggle-auth">
                     Already have an account?{" "}
-                    <Link className="toggle-auth-a" to="/login">Login here</Link>.
+                    <Link className="toggle-auth-a" to={Routes.Login}>Login here</Link>.
                 </p>
             </form>
         </div>

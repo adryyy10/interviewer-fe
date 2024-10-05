@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
+// src/components/AdminQuestions.tsx
+
+import React, { useEffect, useState, FC } from 'react';
 import { fetchAdminQuestions } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import './AdminQuestions.css';
 import { useAuth } from '../hooks/AuthProvider';
+import { Question } from '../types';
+import { AxiosResponse } from 'axios';
 
-const AdminQuestions = () => {
-    const [questions, setQuestions] = useState([]);
+const AdminQuestions: FC = () => {
+    const [questions, setQuestions] = useState<Question[]>([]);
     const navigate = useNavigate();
     const auth = useAuth();
 
     useEffect(() => {
         const getQuestions = async () => {
-            const response = await fetchAdminQuestions();
-            setQuestions(response.data['hydra:member']);
+            try {
+                const response: AxiosResponse<{ 'hydra:member': Question[] }> = await fetchAdminQuestions();
+                setQuestions(response.data['hydra:member']);
+            } catch (error) {
+                console.error('Error fetching admin questions:', error);
+                // Optionally, set an error state here to display to the user
+            }
         };
         getQuestions();
     }, []);
@@ -26,10 +35,10 @@ const AdminQuestions = () => {
             <div className="admin-header">
                 <h2 className="admin-title">Questions</h2>
                 <button className="add-question-button" onClick={() => auth.logOut()}>
-                    logout
+                    Logout
                 </button>
                 <button className="add-question-button" onClick={handleAddQuestionClick}>
-                  Add Question
+                    Add Question
                 </button>
             </div>
             <table className="admin-table">
@@ -38,16 +47,16 @@ const AdminQuestions = () => {
                         <th>Content</th>
                         <th>Category</th>
                         <th>Created By</th>
-                        <th>Is approved</th>
+                        <th>Is Approved</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {questions.map((question, index) => (
-                        <tr key={index}>
+                    {questions.map((question: Question) => (
+                        <tr key={question.id || question.content}>
                             <td>{question.content}</td>
                             <td>{question.category}</td>
                             <td>{question.createdBy.username}</td>
-                            <td>{question.approved.toString()}</td>
+                            <td>{question.approved ? 'Yes' : 'No'}</td>
                         </tr>
                     ))}
                 </tbody>

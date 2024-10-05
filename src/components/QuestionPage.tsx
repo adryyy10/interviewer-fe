@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import useQuestions from '../hooks/useQuestions';
 import Question from './Question';
 import Score from './Score';
 import './QuestionPage.css';
+import { Answer } from '../types/answer/Answer';
 
-
-const QuestionPage = () => {
+const QuestionPage: FC = () => {
     const { questions, loading, error } = useQuestions();
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [isFinished, setIsFinished] = useState(false);
-    const [userAnswers, setUserAnswers] = useState({});
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+    const [isFinished, setIsFinished] = useState<boolean>(false);
+    const [userAnswers, setUserAnswers] = useState<Answer[]>([]);
 
     if (loading) return <div className="loading-container">Loading questions...</div>;
     if (error) return <div className="loading-container">{error}</div>;
 
-    // Handle Question callback function
-    const handleAnswer = (answer) => {
+    // Handle Question callback function with proper typing
+    const handleAnswer = (answer: Answer) => {
         setUserAnswers((prevAnswers) => ({
             ...prevAnswers,
             [currentQuestionIndex]: answer,
@@ -31,17 +31,17 @@ const QuestionPage = () => {
                             question={questions[currentQuestionIndex]} 
                             currentQuestionIndex={currentQuestionIndex + 1}
                             totalQuestions={questions.length}
-                            onAnswer={handleAnswer} // Pass the handleAnswer function
+                            onAnswer={handleAnswer}
                         />
                         <div className="button-container">
                             <button 
-                                onClick={() => setCurrentQuestionIndex(currentQuestionIndex -1)} 
+                                onClick={() => setCurrentQuestionIndex(prev => prev - 1)} 
                                 disabled={currentQuestionIndex === 0}>
                                 Previous
                             </button>
                             {currentQuestionIndex < questions.length - 1 ? (
                                 <button 
-                                    onClick={() => setCurrentQuestionIndex(currentQuestionIndex +1)}>
+                                    onClick={() => setCurrentQuestionIndex(prev => prev + 1)}>
                                     Next
                                 </button>
                             ) : (
