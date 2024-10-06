@@ -4,9 +4,10 @@ import Question from './Question';
 import Score from './Score';
 import './QuestionPage.css';
 import { Answer } from '../types/answer/Answer';
+import { UseQuestionsResponse } from '../types/question/UseQuestionResponse';
 
 const QuestionPage: FC = () => {
-    const { questions, loading, error } = useQuestions();
+    const { questions, loading, error }: UseQuestionsResponse = useQuestions();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
     const [isFinished, setIsFinished] = useState<boolean>(false);
     const [userAnswers, setUserAnswers] = useState<Answer[]>([]);

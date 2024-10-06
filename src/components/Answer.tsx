@@ -1,5 +1,3 @@
-// src/components/Answer.tsx
-
 import React, { FC } from 'react';
 import './Answer.css';
 import { AnswerProps } from '../types/answer/AnswerProps';

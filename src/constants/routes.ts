@@ -8,4 +8,5 @@ export enum Routes {
     AdminQuestions = "/admin/questions",
     CreateQuestion = "/admin/questions/create",
     AdminUsers = "/admin/users",
+    CreateUsers = "/admin/users/create",
 }

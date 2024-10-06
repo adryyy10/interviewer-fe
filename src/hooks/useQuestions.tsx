@@ -1,5 +1,3 @@
-// src/hooks/useQuestions.tsx
-
 import { useState, useEffect } from 'react';
 import { fetchQuestions } from '../services/api';
 import { useLocation } from 'react-router-dom';
@@ -7,14 +5,9 @@ import queryString from 'query-string';
 import { Question } from '../types';
 import { HydraMemberResponse } from '../types/api/HydraMemberResponse';
 import { AxiosResponse } from 'axios';
+import { UseQuestionsResponse } from '../types/question/UseQuestionResponse';
 
-interface UseQuestionsReturn {
-    questions: Question[];
-    loading: boolean;
-    error: string | null;
-}
-
-const useQuestions = (): UseQuestionsReturn => {
+const useQuestions = (): UseQuestionsResponse => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

@@ -1,11 +1,10 @@
-// src/components/AdminUsers.tsx
-
 import React, { useEffect, useState, FC } from 'react';
 import { fetchAdminUsers } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import './AdminUsers.css';
 import { User } from '../types';
 import { AxiosResponse } from 'axios';
+import { Routes } from '../constants/routes';
 
 const AdminUsers: FC = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -29,7 +28,7 @@ const AdminUsers: FC = () => {
     }, []);
 
     const handleAddUserClick = () => {
-        navigate('/admin/users/create');
+        navigate(Routes.CreateUsers);
     };
 
     if (loading) {

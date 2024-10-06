@@ -1,5 +1,3 @@
-// src/components/Question.tsx
-
 import React, { useState, useEffect, FC } from 'react';
 import './Question.css';
 import Answer from './Answer';

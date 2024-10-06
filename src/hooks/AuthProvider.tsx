@@ -1,5 +1,3 @@
-// src/hooks/AuthProvider.tsx
-
 import React, { createContext, useContext, useState, FC, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { Auth, signup } from "../services/api";
@@ -55,8 +53,8 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
             }
             throw new Error(response.statusText);
         } catch (error: any) {
+            console.error(error);
             alert(error.message);
-            // Optionally, handle error state here
         }
     };
 

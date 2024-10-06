@@ -1,5 +1,3 @@
-// src/components/AdminQuestions.tsx
-
 import React, { useEffect, useState, FC } from 'react';
 import { fetchAdminQuestions } from '../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +18,6 @@ const AdminQuestions: FC = () => {
                 setQuestions(response.data['hydra:member']);
             } catch (error) {
                 console.error('Error fetching admin questions:', error);
-                // Optionally, set an error state here to display to the user
             }
         };
         getQuestions();
