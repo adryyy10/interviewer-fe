@@ -1,25 +1,23 @@
-import { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent, FC } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 import "./Login.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { LoginData, FormErrors } from "../types";
 
-const Login = () => {
-    const [input, setInput] = useState({
+const Login: FC = () => {
+    const [input, setInput] = useState<LoginData>({
         email: "",
         password: "",
     });
 
-    const [errors, setErrors] = useState({
-        email: "",
-        password: "",
-    });
+    const [errors, setErrors] = useState<FormErrors>({});
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
     const auth = useAuth();
 
     // Function to handle input changes
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
         setInput((prev) => ({
             ...prev,
@@ -34,11 +32,11 @@ const Login = () => {
     };
 
     // Function to validate form inputs
-    const validate = () => {
-        const newErrors = {};
+    const validate = (): boolean => {
+        const newErrors: FormErrors = {};
         let isValid = true;
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!input.email) {
             newErrors.email = "Email is required.";
@@ -61,15 +59,15 @@ const Login = () => {
     };
 
     // Function to handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         if (validate()) {
-            auth.loginAction(input);
+            await auth.loginAction(input);
         }
     };
 
     // Function to toggle password visibility
-    const togglePasswordVisibility = () => {
+    const togglePasswordVisibility = (): void => {
         setShowPassword((prev) => !prev);
     };
 

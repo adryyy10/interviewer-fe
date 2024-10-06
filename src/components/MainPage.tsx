@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css';
 
-const MainPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState('All');
+const MainPage: FC = () => {
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const navigate = useNavigate();
 
-    const categories = ['All', 'PHP', 'JS', 'Python', 'Java'];
+    const categories: string[] = ['All', 'PHP', 'JS', 'Python', 'Java'];
 
-    const handleCategoryChange = (event) => {
+    const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>): void => {
         setSelectedCategory(event.target.value);
     };
 
-    const handleStartQuestionnaire = () => {
+    const handleStartQuestionnaire = (): void => {
         if (selectedCategory) {
             if (selectedCategory === 'All') {
                 navigate('/questions');
             } else {
-                navigate(`/questions?category=${selectedCategory}`);
+                navigate(`/questions?category=${encodeURIComponent(selectedCategory)}`);
             }
         } else {
             alert('Please select a category to start the questionnaire.');
@@ -27,7 +27,7 @@ const MainPage = () => {
     return (
         <main className="main-container">
             <h1 className="main-title">Interviewer</h1>
-            <form className='main-form'>
+            <form className='main-form' onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor="category-select" className="category-label">Select Category:</label>
                 <select
                     id="category-select"
@@ -35,7 +35,7 @@ const MainPage = () => {
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                 >
-                    {categories.map((category) => (
+                    {categories.map((category: string) => (
                         <option key={category} value={category}>
                             {category}
                         </option>

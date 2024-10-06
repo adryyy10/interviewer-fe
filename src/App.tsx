@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateQuestionForm from './components/CreateQuestionForm';
 import QuestionPage from './components/QuestionPage';
@@ -11,29 +11,31 @@ import PublicRoute from './components/PublicRoute';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
+import { Routes as AppRoutes } from './constants/routes';
 
-const App = () => {
+const App: FC = () => {
     return (
         <Router>
             <AuthProvider>
                 <Routes>
-                    {/* Public Logged Routes */}
+                    {/* Public Routes */}
                     <Route element={<PublicRoute />}>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
+                        <Route path={AppRoutes.Login} element={<Login />} />
+                        <Route path={AppRoutes.Signup} element={<Signup />} />
                     </Route>
 
-                    {/* Admin Logged Routes */}
+                    {/* Protected Routes */}
                     <Route element={<PrivateRoute />}>
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/admin/questions" element={<AdminQuestions />} />
-                        <Route path="/admin/questions/create" element={<CreateQuestionForm />} />
-                        <Route path="/admin/users" element={<AdminUsers />} />
+                        <Route path={AppRoutes.Dashboard} element={<Dashboard />} />
+                        <Route path={AppRoutes.AdminQuestions} element={<AdminQuestions />} />
+                        <Route path={AppRoutes.CreateQuestion} element={<CreateQuestionForm />} />
+                        <Route path={AppRoutes.AdminUsers} element={<AdminUsers />} />
+                        {/* Add more protected routes as needed */}
                     </Route>
 
                     {/* Other Routes */}
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/questions" element={<QuestionPage />} />
+                    <Route path={AppRoutes.Main} element={<MainPage />} />
+                    <Route path={AppRoutes.Questions} element={<QuestionPage />} />
                 </Routes>
             </AuthProvider>
         </Router>
