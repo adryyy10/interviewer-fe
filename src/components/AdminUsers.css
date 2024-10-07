@@ -59,6 +59,7 @@
 }
 
 .admin-table tr:hover {
+  cursor: pointer;
   background-color: #e9ecef;
   transition: background-color 0.3s ease;
 }
