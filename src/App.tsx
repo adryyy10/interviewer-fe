@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
 import { Routes as AppRoutes } from './constants/routes';
+import AdminUserDetails from './components/AdminUserDetails';
 
 const App: FC = () => {
     return (
@@ -26,11 +27,11 @@ const App: FC = () => {
 
                     {/* Protected Routes */}
                     <Route element={<PrivateRoute />}>
-                        <Route path={AppRoutes.Dashboard} element={<Dashboard />} />
+                        <Route path={AppRoutes.AdminUsers} element={<AdminUsers />} />
+                        <Route path={AppRoutes.AdminUserDetails} element={<AdminUserDetails />} />
                         <Route path={AppRoutes.AdminQuestions} element={<AdminQuestions />} />
                         <Route path={AppRoutes.CreateQuestion} element={<CreateQuestionForm />} />
-                        <Route path={AppRoutes.AdminUsers} element={<AdminUsers />} />
-                        {/* Add more protected routes as needed */}
+                        <Route path={AppRoutes.Dashboard} element={<Dashboard />} />
                     </Route>
 
                     {/* Other Routes */}

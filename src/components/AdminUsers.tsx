@@ -31,6 +31,12 @@ const AdminUsers: FC = () => {
         navigate(Routes.CreateUsers);
     };
 
+    const handleViewUserClick = (userId: number): React.MouseEventHandler<HTMLTableRowElement> => {
+        return () => {
+            navigate(`/admin/users/${userId}`);
+        };
+    };
+
     if (loading) {
         return <div className="admin-container"><p>Loading users...</p></div>;
     }
@@ -58,7 +64,7 @@ const AdminUsers: FC = () => {
                     </thead>
                     <tbody>
                         {users.map((user: User) => (
-                            <tr key={user.id || user.email}>
+                            <tr key={user.id || user.email} onClick={handleViewUserClick(user.id)}>
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
                                 <td>{user.admin ? 'Yes' : 'No'}</td>
