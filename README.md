@@ -1,5 +1,6 @@
 # Interviewer Quiz Application
 
+The **Interviewer Quiz Application** offers a dynamic quiz system where candidates can take quizzes tailored to various programming languages and topics. The application also includes an administrative dashboard for managing users and overseeing quiz content.
 
 ## Table of Contents
 
@@ -15,10 +16,6 @@
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
-
-## Overview
-
-The **Interviewer Quiz Application** offers a dynamic quiz system where candidates can take quizzes tailored to various programming languages and topics. The application also includes an administrative dashboard for managing users and overseeing quiz content.
 
 ## Features
 
