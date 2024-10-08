@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { SignupData, User } from "../types";
+import { Question, SignupData, User } from "../types";
 import { AuthResponse } from "../types/api/AuthResponse";
 import { QuestionData } from "../types/question/QuestionData";
 import { CreateQuestionResponse } from "../types/api/CreateQuestionResponse";
@@ -36,7 +36,7 @@ export const fetchAdminUsers = () => api.get(Routes.AdminUsers, config);
 
 export const fetchAdminUserById = (id: number): Promise<AxiosResponse<User>> => api.get(`${Routes.AdminUsers}/${id}`, config);
 
-export const fetchQuestion = (id: number) => api.get(`/questions/${id}`);
+export const fetchAdminQuestionById = (id: number): Promise<AxiosResponse<Question>> => api.get(`${Routes.AdminQuestions}/${id}`, config);
 
 export const fetchQuestions = (category: string | null) => api.get(category ? `/questions?category=${category}` : Routes.Questions);
 
