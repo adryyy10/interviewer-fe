@@ -13,6 +13,7 @@ import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
 import { Routes as AppRoutes } from './constants/routes';
 import AdminUserDetails from './components/AdminUserDetails';
+import AdminQuestionDetails from './components/AdminQuestionDetails';
 
 const App: FC = () => {
     return (
@@ -30,6 +31,7 @@ const App: FC = () => {
                         <Route path={AppRoutes.AdminUsers} element={<AdminUsers />} />
                         <Route path={AppRoutes.AdminUserDetails} element={<AdminUserDetails />} />
                         <Route path={AppRoutes.AdminQuestions} element={<AdminQuestions />} />
+                        <Route path={AppRoutes.AdminQuestionDetails} element={<AdminQuestionDetails />} />
                         <Route path={AppRoutes.CreateQuestion} element={<CreateQuestionForm />} />
                         <Route path={AppRoutes.Dashboard} element={<Dashboard />} />
                     </Route>

@@ -28,7 +28,7 @@ const AdminUsers: FC = () => {
     }, []);
 
     const handleAddUserClick = () => {
-        navigate(Routes.CreateUsers);
+        navigate(Routes.CreateUser);
     };
 
     const handleViewUserClick = (userId: number): React.MouseEventHandler<HTMLTableRowElement> => {

@@ -5,6 +5,7 @@ import './AdminQuestions.css';
 import { useAuth } from '../hooks/AuthProvider';
 import { Question } from '../types';
 import { AxiosResponse } from 'axios';
+import { Routes } from '../constants/routes';
 
 const AdminQuestions: FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -24,7 +25,13 @@ const AdminQuestions: FC = () => {
     }, []);
 
     const handleAddQuestionClick = () => {
-        navigate('/admin/questions/create');
+        navigate(Routes.CreateQuestion);
+    };
+
+    const handleViewQuestionClick = (questionId: number): React.MouseEventHandler<HTMLTableRowElement> => {
+        return () => {
+            navigate(`/admin/questions/${questionId}`);
+        };
     };
 
     return (
@@ -49,7 +56,7 @@ const AdminQuestions: FC = () => {
                 </thead>
                 <tbody>
                     {questions.map((question: Question) => (
-                        <tr key={question.id || question.content}>
+                        <tr key={question.id || question.content} onClick={handleViewQuestionClick(question.id)}>
                             <td>{question.content}</td>
                             <td>{question.category}</td>
                             <td>{question.createdBy.username}</td>
