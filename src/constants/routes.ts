@@ -1,5 +1,6 @@
 export enum Routes {
-    Main = "/",
+    LandingPage = "/",
+    Quiz = "/quiz",
     Login = "/login",
     Auth = "/auth/lookup",
     Signup = "/signup",

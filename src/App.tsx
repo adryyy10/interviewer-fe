@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateQuestionForm from './components/CreateQuestionForm';
 import QuestionPage from './components/QuestionPage';
-import MainPage from './components/MainPage';
+import QuizForm from './components/QuizForm';
 import AdminQuestions from './components/AdminQuestions';
 import AdminUsers from './components/AdminUsers';
 import AuthProvider from './hooks/AuthProvider';
@@ -14,12 +14,14 @@ import Dashboard from './components/Dashboard';
 import { Routes as AppRoutes } from './constants/routes';
 import AdminUserDetails from './components/AdminUserDetails';
 import AdminQuestionDetails from './components/AdminQuestionDetails';
+import LandingPage from './components/LandingPage';
 
 const App: FC = () => {
     return (
         <Router>
             <AuthProvider>
                 <Routes>
+                    
                     {/* Public Routes */}
                     <Route element={<PublicRoute />}>
                         <Route path={AppRoutes.Login} element={<Login />} />
@@ -37,7 +39,8 @@ const App: FC = () => {
                     </Route>
 
                     {/* Other Routes */}
-                    <Route path={AppRoutes.Main} element={<MainPage />} />
+                    <Route path={AppRoutes.LandingPage} element={<LandingPage />} />
+                    <Route path={AppRoutes.Quiz} element={<QuizForm />} />
                     <Route path={AppRoutes.Questions} element={<QuestionPage />} />
                 </Routes>
             </AuthProvider>
