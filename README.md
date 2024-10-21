@@ -88,7 +88,7 @@ Ensure you have the following installed on your machine:
 2. **Navigate to the Project Directory**
 
    ```bash
-   cd interview-quiz-app
+   cd interview-fe
    ```
 
 3. **Install dependencies**

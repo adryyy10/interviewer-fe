@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './MainPage.css';
+import './QuizForm.css';
 
-const MainPage: FC = () => {
+const QuizForm: FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const navigate = useNavigate();
 
@@ -49,4 +49,4 @@ const MainPage: FC = () => {
     );
 };
 
-export default MainPage;
+export default QuizForm;
