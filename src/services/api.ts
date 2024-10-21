@@ -15,6 +15,18 @@ const getEncodedApiKey = () => {
     return apiKey ? btoa(apiKey) : null;
 };
 
+const getContentTypeConfig = () => ({
+    headers: {
+        'Content-Type':  'application/ld+json',
+    },
+});
+
+const getBasicConfig = (encodedCredentials: string) => ({
+    headers: {
+        Authorization: `Basic ${encodedCredentials}`,
+    },
+})
+
 const getConfig = () => ({
     headers: {
         'Content-Type':  'application/ld+json',
@@ -31,11 +43,7 @@ const getPatchConfig = () => ({
 
 // GET
 export const Auth = (encodedCredentials: string): Promise<AxiosResponse<AuthResponse>> => {
-    return api.get<AuthResponse>(Routes.Auth, {
-        headers: {
-            Authorization: `Basic ${encodedCredentials}`,
-        },
-    });
+    return api.get<AuthResponse>(Routes.Auth, getBasicConfig(encodedCredentials));
 };
 
 export const fetchAdminQuestions = () => api.get(Routes.AdminQuestions, getConfig());
@@ -54,7 +62,7 @@ export const createQuestion = async (questionData: Omit<QuestionData, 'id'>): Pr
 };
 
 export const signup = (data: SignupData): Promise<AxiosResponse<AuthResponse>> => {
-    return api.post<AuthResponse>(Routes.Signup, data);
+    return api.post<AuthResponse>(Routes.Signup, data, getContentTypeConfig());
 };
 
 // PATCH
