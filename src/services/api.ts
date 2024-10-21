@@ -5,6 +5,7 @@ import { QuestionData } from "../types/question/QuestionData";
 import { CreateQuestionResponse } from "../types/api/CreateQuestionResponse";
 import { Routes } from "../constants/routes";
 import { UpdateQuestionData } from "../types/question/UpdateQuestionData";
+import { UpdateUserData } from "../types/user/UpdateUserData";
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -71,4 +72,11 @@ export const updateAdminQuestionById = (
     questionData: UpdateQuestionData
 ): Promise<AxiosResponse<Question>> => {
     return api.patch<Question>(`${Routes.AdminQuestions}/${id}`, questionData, getPatchConfig());
+};
+
+export const updateAdminUserById = (
+    id: number,
+    userData: UpdateUserData
+): Promise<AxiosResponse<User>> => {
+    return api.patch<User>(`${Routes.AdminUsers}/${id}`, userData, getPatchConfig());
 };
