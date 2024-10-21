@@ -30,7 +30,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
                 localStorage.setItem("apiKey", responseData.apiKey);
                 setAdmin(responseData.admin);
                 localStorage.setItem("admin", responseData.admin.toString());
-                responseData.admin ? navigate(Routes.Dashboard) : navigate(Routes.Questions);
+                responseData.admin ? navigate(Routes.Dashboard) : navigate(Routes.Main);
                 return;
             }
             throw new Error(response.statusText);
@@ -48,7 +48,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
                 localStorage.setItem("apiKey", responseData.apiKey);
                 setAdmin(responseData.admin);
                 localStorage.setItem("admin", responseData.admin.toString());
-                responseData.admin ? navigate(Routes.Dashboard) : navigate("/");
+                responseData.admin ? navigate(Routes.Dashboard) : navigate(Routes.Main);
                 return;
             }
             throw new Error(response.statusText);
