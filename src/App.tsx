@@ -15,11 +15,15 @@ import { Routes as AppRoutes } from './constants/routes';
 import AdminUserDetails from './components/AdminUserDetails';
 import AdminQuestionDetails from './components/AdminQuestionDetails';
 import LandingPage from './components/LandingPage';
+import Header from './components/Header';
+import FAQ from './components/FAQ';
+import Footer from './components/Footer';
 
 const App: FC = () => {
     return (
         <Router>
             <AuthProvider>
+                <Header />
                 <Routes>
                     
                     {/* Public Routes */}
@@ -40,9 +44,11 @@ const App: FC = () => {
 
                     {/* Other Routes */}
                     <Route path={AppRoutes.LandingPage} element={<LandingPage />} />
+                    <Route path={AppRoutes.faq} element={<FAQ />} />
                     <Route path={AppRoutes.Quiz} element={<QuizForm />} />
                     <Route path={AppRoutes.Questions} element={<QuestionPage />} />
                 </Routes>
+                <Footer />
             </AuthProvider>
         </Router>
     );

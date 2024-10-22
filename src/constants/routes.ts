@@ -2,6 +2,7 @@ export enum Routes {
     LandingPage = "/",
     Quiz = "/quiz",
     Login = "/login",
+    faq = "/faq",
     Auth = "/auth/lookup",
     Signup = "/signup",
     Dashboard = "/dashboard",
