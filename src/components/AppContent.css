@@ -1,0 +1,7 @@
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-height: calc(80vh - 120px); /* Calculated based on Header and Footer height */
+    box-sizing: border-box;
+}

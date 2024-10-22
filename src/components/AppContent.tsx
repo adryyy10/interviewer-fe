@@ -1,3 +1,5 @@
+// src/components/AppContent.tsx
+
 import React, { FC } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CreateQuestionForm from './CreateQuestionForm';
@@ -17,6 +19,7 @@ import LandingPage from './LandingPage';
 import Header from './Header';
 import FAQ from './FAQ';
 import Footer from './Footer';
+import './AppContent.css';
 
 const AppContent: FC = () => {
     const location = useLocation();
@@ -24,6 +27,8 @@ const AppContent: FC = () => {
     const isAdminRoute = (pathname: string): boolean => {
         return pathname.startsWith(AppRoutes.AdminBase);
     };
+
+    const shouldShowFooter = !isAdminRoute(location.pathname);
 
     return (
         <>
@@ -53,7 +58,7 @@ const AppContent: FC = () => {
                     <Route path={AppRoutes.Questions} element={<QuestionPage />} />
                 </Routes>
             </div>
-            {!isAdminRoute(location.pathname) && <Footer />}
+            {shouldShowFooter && <Footer />}
         </>
     );
 };
