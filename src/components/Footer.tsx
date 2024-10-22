@@ -1,5 +1,3 @@
-// src/components/Footer.tsx
-
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
@@ -29,7 +27,6 @@ const Footer: FC = () => {
                     </ul>
                 </div>
 
-                {/* Right Section: Social Media Links */}
                 <div className="footer-right">
                     <h3>Follow Us</h3>
                     <div className="footer-social-icons">

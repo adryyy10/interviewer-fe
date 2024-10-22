@@ -1,5 +1,3 @@
-// src/App.tsx
-
 import React, { FC } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AuthProvider from './hooks/AuthProvider';
