@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './QuizForm.css';
+import { Routes } from '../constants/routes';
 
 const QuizForm: FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -15,7 +16,7 @@ const QuizForm: FC = () => {
     const handleStartQuestionnaire = (): void => {
         if (selectedCategory) {
             if (selectedCategory === 'All') {
-                navigate('/questions');
+                navigate(Routes.Questions);
             } else {
                 navigate(`/questions?category=${encodeURIComponent(selectedCategory)}`);
             }
@@ -25,13 +26,13 @@ const QuizForm: FC = () => {
     };
 
     return (
-        <main className="main-container">
-            <h1 className="main-title">Interviewer</h1>
-            <form className='main-form' onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="category-select" className="category-label">Select Category:</label>
+        <main className="quiz-main-container">
+            <h1 className="quiz-main-title">Interviewer</h1>
+            <form className='quiz-main-form' onSubmit={(e) => e.preventDefault()}>
+                <label htmlFor="category-select" className="quiz-category-label">Select Category:</label>
                 <select
                     id="category-select"
-                    className="category-select"
+                    className="quiz-category-select"
                     value={selectedCategory}
                     onChange={handleCategoryChange}
                 >
@@ -41,7 +42,7 @@ const QuizForm: FC = () => {
                         </option>
                     ))}
                 </select>
-                <button type="button" className="main-button" onClick={handleStartQuestionnaire}>
+                <button type="button" className="quiz-main-button" onClick={handleStartQuestionnaire}>
                     Start Questionnaire
                 </button>
             </form>
