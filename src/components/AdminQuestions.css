@@ -1,37 +1,37 @@
-.admin-container {
+.question-admin-container {
     margin: 20px;
     padding: 20px;
     background-color: #f8f9fa;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-.admin-title {
+.question-admin-title {
   font-size: 1.8rem;
-  color: #333;
+  color: var(--text-color);
   margin-bottom: 20px;
   text-align: center;
 }
 
-.admin-header {
+.question-admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
   
-.add-question-button {
+.question-add-button {
   background-color: #80669d;
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 }
 
-.add-question-button:hover {
+.question-add-button:hover {
   background-color: #6c429c;
 }
 
@@ -49,6 +49,7 @@
 }
 
 .admin-table th {
+  cursor: auto;
   background-color: #80669d;
   color: white;
   font-weight: bold;

@@ -2,7 +2,7 @@
     background-color: #343a40;
     color: #ffffff;
     padding: 40px 20px 20px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family);
 }
 
 .footer-container {

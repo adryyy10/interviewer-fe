@@ -3,13 +3,13 @@
     padding: 20px;
     background-color: #f8f9fa;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
 .admin-title {
   font-size: 1.8rem;
-  color: #333;
+  color: var(--text-color);
   margin-bottom: 20px;
   text-align: center;
 }
@@ -28,7 +28,7 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 }
 
 .add-user-button:hover {

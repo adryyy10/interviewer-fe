@@ -4,7 +4,7 @@
   justify-content: center; /* Center vertically */
   align-items: center;     /* Center horizontally */
   border: 2px solid #ddd;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   padding: 40px;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -15,7 +15,7 @@
 
 .quiz-main-title {
   font-size: 2rem;
-  color: #333;
+  color: var(--text-color);
   margin-bottom: 20px;
 }
 
@@ -40,7 +40,7 @@
   margin-bottom: 20px;
   width: 100%;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   outline: none;
   box-sizing: border-box;
 }
@@ -49,9 +49,9 @@
   padding: 10px 20px;
   font-size: 16px;
   color: white;
-  background-color: #a881af;
+  background-color: var(--secondary-color);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
