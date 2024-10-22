@@ -18,6 +18,7 @@ import Header from './Header';
 import FAQ from './FAQ';
 import Footer from './Footer';
 import './AppContent.css';
+import NotFound from './NotFound';
 
 const AppContent: FC = () => {
     const location = useLocation();
@@ -54,6 +55,9 @@ const AppContent: FC = () => {
                     <Route path={AppRoutes.faq} element={<FAQ />} />
                     <Route path={AppRoutes.Quiz} element={<QuizForm />} />
                     <Route path={AppRoutes.Questions} element={<QuestionPage />} />
+
+                    {/* Not Found Route */}
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>
             {shouldShowFooter && <Footer />}

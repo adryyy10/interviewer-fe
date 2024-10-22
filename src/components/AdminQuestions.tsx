@@ -2,7 +2,6 @@ import React, { useEffect, useState, FC } from 'react';
 import { fetchAdminQuestions } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import './AdminQuestions.css';
-import { useAuth } from '../hooks/AuthProvider';
 import { Question } from '../types';
 import { AxiosResponse } from 'axios';
 import { Routes } from '../constants/routes';
@@ -10,7 +9,6 @@ import { Routes } from '../constants/routes';
 const AdminQuestions: FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const navigate = useNavigate();
-    const auth = useAuth();
 
     useEffect(() => {
         const getQuestions = async () => {
@@ -35,13 +33,10 @@ const AdminQuestions: FC = () => {
     };
 
     return (
-        <div className="admin-container">
-            <div className="admin-header">
-                <h2 className="admin-title">Questions</h2>
-                <button className="add-question-button" onClick={() => auth.logOut()}>
-                    Logout
-                </button>
-                <button className="add-question-button" onClick={handleAddQuestionClick}>
+        <div className="question-admin-container">
+            <div className="question-admin-header">
+                <h2 className="question-admin-title">Questions</h2>
+                <button className="question-add-button" onClick={handleAddQuestionClick}>
                     Add Question
                 </button>
             </div>

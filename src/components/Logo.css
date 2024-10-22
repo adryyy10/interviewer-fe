@@ -8,7 +8,7 @@
     font-weight: bold;
     color: #80669d;
     text-decoration: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family);
 }
 
 .logo-text:hover {

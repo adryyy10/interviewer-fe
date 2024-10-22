@@ -1,0 +1,51 @@
+.notfound-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.notfound-title {
+    font-size: 6rem;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.notfound-message {
+    font-size: 1.5rem;
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+.notfound-link {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.notfound-link:hover {
+    background-color: #6c429c;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .notfound-title {
+        font-size: 4rem;
+    }
+
+    .notfound-message {
+        font-size: 1.2rem;
+    }
+
+    .notfound-link {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

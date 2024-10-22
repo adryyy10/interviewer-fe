@@ -11,7 +11,7 @@
     width: 100%;
     background-color: #ffffff;
     padding: 40px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
 }
 
 .landing-page-title {
