@@ -1,5 +1,3 @@
-// src/components/AppContent.tsx
-
 import React, { FC } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CreateQuestionForm from './CreateQuestionForm';
