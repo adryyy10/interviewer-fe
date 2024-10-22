@@ -20,7 +20,7 @@ const Header: FC = () => {
                 <div className="header-user">
                     {token ? (
                         <div className="user-settings">
-                            <Link to="/dashboard" className="dashboard-link">Dashboard</Link>
+                            <Link to={Routes.Dashboard} className="dashboard-link">Dashboard</Link>
                             <button onClick={logOut} className="logout-button">
                                 Logout
                             </button>
