@@ -11,7 +11,7 @@ const PrivateRoute: FC = (): ReactElement => {
     }
 
     if (!admin) {
-        return <Navigate to="/" replace />;
+        return <Navigate to={Routes.LandingPage} replace />;
     }
 
     return <Outlet />;

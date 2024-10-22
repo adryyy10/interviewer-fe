@@ -7,7 +7,7 @@ const PublicRoute: FC = (): ReactElement => {
     const { token, admin } = useAuth();
 
     if (!token) return <Outlet />;
-    if (!admin) return <Navigate to={Routes.Questions} replace />;
+    if (!admin) return <Navigate to={Routes.LandingPage} replace />;
 
     return <Navigate to={Routes.Dashboard} replace />
 };
