@@ -5,22 +5,49 @@ import Score from './Score';
 import './QuestionPage.css';
 import { Answer } from '../types/answer/Answer';
 import { UseQuestionsResponse } from '../types/question/UseQuestionResponse';
+import { calculateQuizResult } from '../utils/quizUtils';
+import { QuizResult } from '../types/quiz/QuizResult';
+import { createQuiz } from '../services/api';
 
 const QuestionPage: FC = () => {
     const { questions, loading, error }: UseQuestionsResponse = useQuestions();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
     const [isFinished, setIsFinished] = useState<boolean>(false);
     const [userAnswers, setUserAnswers] = useState<Answer[]>([]);
+    const [submitting, setSubmitting] = useState<boolean>(false);
+    const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
 
     if (loading) return <div className="loading-container">Loading questions...</div>;
     if (error) return <div className="loading-container">{error}</div>;
 
     // Handle Question callback function with proper typing
     const handleAnswer = (answer: Answer) => {
-        setUserAnswers((prevAnswers) => ({
-            ...prevAnswers,
-            [currentQuestionIndex]: answer,
-        }));
+        setUserAnswers((prevAnswers) => {
+            const updatedAnswers = [...prevAnswers];
+            updatedAnswers[currentQuestionIndex] = answer;
+            return updatedAnswers;
+        });
+    };
+
+    const handleFinishQuiz = async () => {
+        const result: QuizResult = calculateQuizResult(questions, userAnswers);
+
+        const quizData = {
+            punctuation: result.punctuation,
+            percentage: result.percentage,
+            remarks: result.remarks,
+        };
+
+        try {
+            setSubmitting(true);
+            await createQuiz(quizData);
+            setSubmitting(false);
+            setQuizResult(result);
+            setIsFinished(true);
+        } catch (err) {
+            setSubmitting(false);
+            console.error(err);
+        }
     };
 
     return (
@@ -46,9 +73,11 @@ const QuestionPage: FC = () => {
                                     Next
                                 </button>
                             ) : (
-                                <button 
-                                    onClick={() => setIsFinished(true)}>
-                                    Finish
+                                <button
+                                    onClick={handleFinishQuiz}
+                                    disabled={submitting}
+                                >
+                                    {submitting ? 'Submitting...' : 'Finish'}
                                 </button>
                             )}
                         </div>
@@ -57,6 +86,7 @@ const QuestionPage: FC = () => {
                     <Score
                         questions={questions}
                         userAnswers={userAnswers}
+                        result={quizResult}
                     />
                 )
             ) : (

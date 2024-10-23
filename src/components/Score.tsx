@@ -1,40 +1,23 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import './Score.css';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { ScoreProps } from '../types/score/ScoreProps';
 import { Question } from '../types/question/Question';
 import { Answer } from '../types/answer/Answer';
 
-const Score: FC<ScoreProps> = ({ questions, userAnswers }) => {
-    // Calculate score using useMemo to avoid recalculations on every render
-    const { percentage } = useMemo(() => {
-        let calculatedScore = 0;
-        questions.forEach((question: Question, index: number) => {
-            const userAnswer: Answer | null = userAnswers[index];
-            const correctAnswer: Answer | undefined = question.answers.find((ans) => ans.correct);
-
-            if (userAnswer && correctAnswer && userAnswer.content === correctAnswer.content) {
-                calculatedScore += 1;
-            }
-        });
-
-        const calculatedPercentage = questions.length > 0 ? (calculatedScore / questions.length) * 100 : 0;
-
-        return { score: calculatedScore, percentage: calculatedPercentage };
-    }, [questions, userAnswers]);
-
+const Score: FC<ScoreProps> = ({ questions, userAnswers, result }) => {
     return (
         <div className="score-container">
             <h2>🎉 Congratulations! 🎉</h2>
             <div className="score-summary">
                 <p>You scored:</p>
                 <div className="score-number">
-                    <span>{percentage.toFixed(2)}%</span>
+                    <span>{result?.percentage}%</span>
                 </div>
                 <div className="progress-bar">
                     <div
                         className="progress-fill"
-                        style={{ width: `${percentage}%` }}
+                        style={{ width: `${result?.percentage}%` }}
                     ></div>
                 </div>
             </div>
