@@ -6,6 +6,7 @@ import { CreateQuestionResponse } from "../types/api/CreateQuestionResponse";
 import { Routes } from "../constants/routes";
 import { UpdateQuestionData } from "../types/question/UpdateQuestionData";
 import { UpdateUserData } from "../types/user/UpdateUserData";
+import { QuizResult } from "../types/quiz/QuizResult";
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -64,6 +65,10 @@ export const createQuestion = async (questionData: Omit<QuestionData, 'id'>): Pr
 
 export const signup = (data: SignupData): Promise<AxiosResponse<AuthResponse>> => {
     return api.post<AuthResponse>(Routes.Signup, data, getContentTypeConfig());
+};
+
+export const createQuiz = async (data: Omit<QuizResult, 'id'>): Promise<AxiosResponse<CreateQuestionResponse>> => {
+    return api.post<CreateQuestionResponse>(Routes.Quizzes, data, getConfig());
 };
 
 // PATCH
