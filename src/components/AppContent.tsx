@@ -19,6 +19,7 @@ import FAQ from './FAQ';
 import Footer from './Footer';
 import './AppContent.css';
 import NotFound from './NotFound';
+import MyQuizzes from './MyQuizzes';
 
 const AppContent: FC = () => {
     const location = useLocation();
@@ -48,6 +49,7 @@ const AppContent: FC = () => {
                         <Route path={AppRoutes.AdminQuestionDetails} element={<AdminQuestionDetails />} />
                         <Route path={AppRoutes.CreateQuestion} element={<CreateQuestionForm />} />
                         <Route path={AppRoutes.Dashboard} element={<Dashboard />} />
+                        <Route path={AppRoutes.MyQuizzes} element={<MyQuizzes />} />
                     </Route>
 
                     {/* Other Routes */}

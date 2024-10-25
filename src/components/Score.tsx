@@ -8,7 +8,7 @@ import { Answer } from '../types/answer/Answer';
 const Score: FC<ScoreProps> = ({ questions, userAnswers, result }) => {
     return (
         <div className="score-container">
-            <h2>🎉 Congratulations! 🎉</h2>
+            <h2>{result?.remarks}</h2>
             <div className="score-summary">
                 <p>You scored:</p>
                 <div className="score-number">

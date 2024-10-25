@@ -1,3 +1,5 @@
+/* src/components/Header.css */
+
 .header {
     background-color: #f8f9fa;
     padding: 15px 30px;
@@ -25,8 +27,9 @@
     align-items: center;
 }
 
+/* Styles for Login/Signup Links */
 .login-signup a,
-.user-settings button {
+.user-menu-title {
     margin-left: 20px;
     font-size: 1rem;
     text-decoration: none;
@@ -37,11 +40,70 @@
 }
 
 .login-signup a:hover,
-.user-settings button:hover {
+.user-menu-title:hover {
     text-decoration: underline;
 }
 
 .logout-button {
     color: #dc3545;
     font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    width: -webkit-fill-available;
+    text-align: justify;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-menu-title {
+    cursor: pointer;
+    font-size: 1rem;
+    color: #000000;
+    padding: 5px 10px;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.user-dropdown .dropdown-item {
+    color: #000000;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-icon {
+    margin-right: 8px;
+}
+
+.user-dropdown .dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* Show Dropdown on Hover */
+.user-menu:hover .user-dropdown {
+    display: block;
+    opacity: 1;
+}
+
+/* Dropdown Items Hover Effect */
+.user-dropdown .dropdown-item:hover {
+    background-color: #f1f1f1;
 }

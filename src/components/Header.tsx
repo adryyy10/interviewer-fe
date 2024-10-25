@@ -1,9 +1,12 @@
+// src/components/Header.tsx
+
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import { useAuth } from '../hooks/AuthProvider';
 import Logo from './Logo';
 import { Routes } from '../constants/routes';
+import { FaTachometerAlt, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
 
 const Header: FC = () => {
     const { token, logOut } = useAuth();
@@ -19,11 +22,19 @@ const Header: FC = () => {
 
                 <div className="header-user">
                     {token ? (
-                        <div className="user-settings">
-                            <Link to={Routes.Dashboard} className="dashboard-link">Dashboard</Link>
-                            <button onClick={logOut} className="logout-button">
-                                Logout
-                            </button>
+                        <div className="user-menu">
+                            <span className="user-menu-title">Settings</span>
+                            <div className="user-dropdown">
+                                <Link to={Routes.Dashboard} className="dropdown-item">
+                                    <FaTachometerAlt className="dropdown-icon" /> Dashboard
+                                </Link>
+                                <Link to={Routes.MyQuizzes} className="dropdown-item">
+                                    <FaClipboardList className="dropdown-icon" /> My Quizzes
+                                </Link>
+                                <button onClick={logOut} className="dropdown-item logout-button">
+                                    <FaSignOutAlt className="dropdown-icon" /> Logout
+                                </button>
+                            </div>
                         </div>
                     ) : (
                         <div className="login-signup">

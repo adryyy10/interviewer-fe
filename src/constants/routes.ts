@@ -13,6 +13,7 @@ export enum Routes {
     AdminQuestionDetails = "/admin/questions/:id",
     CreateQuestion = "/admin/questions/create",
     AdminUsers = "/admin/users",
+    MyQuizzes = "/my-quizzes",
     AdminUserDetails = "/admin/users/:id",
     CreateUser = "/admin/users/create",
 }
