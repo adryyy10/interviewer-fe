@@ -1,11 +1,9 @@
-/* src/components/MyQuizzes.css */
-
 .quizzes-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    min-height: calc(100vh - 120px); /* Adjust based on Header and Footer heights */
+    min-height: calc(70vh - 120px); /* Calculated based on Header and Footer height */
     box-sizing: border-box;
 }
 
