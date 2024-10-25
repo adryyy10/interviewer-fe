@@ -7,6 +7,7 @@ import { Routes } from "../constants/routes";
 import { UpdateQuestionData } from "../types/question/UpdateQuestionData";
 import { UpdateUserData } from "../types/user/UpdateUserData";
 import { QuizResult } from "../types/quiz/QuizResult";
+import { Quiz } from "../types/quiz/Quiz";
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -57,6 +58,8 @@ export const fetchAdminUserById = (id: number): Promise<AxiosResponse<User>> => 
 export const fetchAdminQuestionById = (id: number): Promise<AxiosResponse<Question>> => api.get(`${Routes.AdminQuestions}/${id}`, getConfig());
 
 export const fetchQuestions = (category: string | null) => api.get(category ? `/questions?category=${category}` : Routes.Questions);
+
+export const fetchMyQuizzes = () => api.get(Routes.MyQuizzes, getConfig());
 
 // POST
 export const createQuestion = async (questionData: Omit<QuestionData, 'id'>): Promise<AxiosResponse<CreateQuestionResponse>> => {
