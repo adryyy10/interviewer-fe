@@ -5,6 +5,7 @@ import './AdminUsers.css';
 import { User } from '../types';
 import { AxiosResponse } from 'axios';
 import { Routes } from '../constants/routes';
+import { HydraMemberResponse } from '../types/api/HydraMemberResponse';
 
 const AdminUsers: FC = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -15,7 +16,7 @@ const AdminUsers: FC = () => {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const response: AxiosResponse<{ 'hydra:member': User[] }> = await fetchAdminUsers();
+                const response: AxiosResponse<HydraMemberResponse<User>> = await fetchAdminUsers();
                 setUsers(response.data['hydra:member']);
             } catch (err) {
                 console.error('Error fetching admin users:', err);
