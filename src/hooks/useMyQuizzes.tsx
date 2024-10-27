@@ -3,6 +3,7 @@ import { Quiz } from '../types/quiz/Quiz';
 import { fetchMyQuizzes } from '../services/api';
 import { UseMyQuizzesResponse } from '../types/quiz/UseMyQuizzesResponse';
 import { AxiosResponse } from 'axios';
+import { HydraMemberResponse } from '../types/api/HydraMemberResponse';
 
 const useMyQuizzes = (): UseMyQuizzesResponse => {
     const [quizzes, setQuizzes] = useState<Quiz[]>([]);
@@ -12,7 +13,7 @@ const useMyQuizzes = (): UseMyQuizzesResponse => {
     useEffect(() => {
         const fetchQuizzes = async () => {
             try {
-                const response: AxiosResponse<{ 'hydra:member': Quiz[] }> = await fetchMyQuizzes();
+                const response: AxiosResponse<HydraMemberResponse<Quiz>> = await fetchMyQuizzes();
                 setQuizzes(response.data['hydra:member']);
                 setLoading(false);
             } catch (err) {

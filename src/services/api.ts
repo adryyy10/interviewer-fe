@@ -8,6 +8,7 @@ import { UpdateQuestionData } from "../types/question/UpdateQuestionData";
 import { UpdateUserData } from "../types/user/UpdateUserData";
 import { QuizResult } from "../types/quiz/QuizResult";
 import { Quiz } from "../types/quiz/Quiz";
+import { HydraMemberResponse } from "../types/api/HydraMemberResponse";
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -49,9 +50,9 @@ export const Auth = (encodedCredentials: string): Promise<AxiosResponse<AuthResp
     return api.get<AuthResponse>(Routes.Auth, getBasicConfig(encodedCredentials));
 };
 
-export const fetchAdminQuestions = () => api.get(Routes.AdminQuestions, getConfig());
+export const fetchAdminQuestions = (): Promise<AxiosResponse<HydraMemberResponse<Question>>> => api.get(Routes.AdminQuestions, getConfig());
 
-export const fetchAdminUsers = () => api.get(Routes.AdminUsers, getConfig());
+export const fetchAdminUsers = (): Promise<AxiosResponse<HydraMemberResponse<User>>> => api.get(Routes.AdminUsers, getConfig());
 
 export const fetchAdminUserById = (id: number): Promise<AxiosResponse<User>> => api.get(`${Routes.AdminUsers}/${id}`, getConfig());
 
@@ -59,7 +60,7 @@ export const fetchAdminQuestionById = (id: number): Promise<AxiosResponse<Questi
 
 export const fetchQuestions = (category: string | null) => api.get(category ? `/questions?category=${category}` : Routes.Questions);
 
-export const fetchMyQuizzes = () => api.get(Routes.MyQuizzes, getConfig());
+export const fetchMyQuizzes = (): Promise<AxiosResponse<HydraMemberResponse<Quiz>>> => api.get(Routes.MyQuizzes, getConfig());
 
 // POST
 export const createQuestion = async (questionData: Omit<QuestionData, 'id'>): Promise<AxiosResponse<CreateQuestionResponse>> => {

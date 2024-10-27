@@ -5,6 +5,7 @@ import './AdminQuestions.css';
 import { Question } from '../types';
 import { AxiosResponse } from 'axios';
 import { Routes } from '../constants/routes';
+import { HydraMemberResponse } from '../types/api/HydraMemberResponse';
 
 const AdminQuestions: FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -13,7 +14,7 @@ const AdminQuestions: FC = () => {
     useEffect(() => {
         const getQuestions = async () => {
             try {
-                const response: AxiosResponse<{ 'hydra:member': Question[] }> = await fetchAdminQuestions();
+                const response: AxiosResponse<HydraMemberResponse<Question>> = await fetchAdminQuestions();
                 setQuestions(response.data['hydra:member']);
             } catch (error) {
                 console.error('Error fetching admin questions:', error);
