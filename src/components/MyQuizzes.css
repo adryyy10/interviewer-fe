@@ -29,7 +29,20 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.quiz-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5;
+}
+
 .quiz-punctuation {
+    font-size: 1.2rem;
+    color: #28a745;
+    margin-bottom: 5px;
+}
+
+.quiz-category {
     font-size: 1.2rem;
     color: #28a745;
     margin-bottom: 5px;

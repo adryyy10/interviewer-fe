@@ -8,6 +8,8 @@ import { UseQuestionsResponse } from '../types/question/UseQuestionResponse';
 import { calculateQuizResult } from '../utils/quizUtils';
 import { QuizResult } from '../types/quiz/QuizResult';
 import { createQuiz } from '../services/api';
+import useQuery from '../hooks/useQuery';
+import { CreateQuizData } from '../types/quiz/CreateQuizData';
 
 const QuestionPage: FC = () => {
     const { questions, loading, error }: UseQuestionsResponse = useQuestions();
@@ -16,6 +18,9 @@ const QuestionPage: FC = () => {
     const [userAnswers, setUserAnswers] = useState<Answer[]>([]);
     const [submitting, setSubmitting] = useState<boolean>(false);
     const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
+
+    const query = useQuery();
+    const category = query.get('category')?.toLowerCase() || 'all';
 
     if (loading) return <div className="loading-container">Loading questions...</div>;
     if (error) return <div className="loading-container">{error}</div>;
@@ -32,15 +37,15 @@ const QuestionPage: FC = () => {
     const handleFinishQuiz = async () => {
         const result: QuizResult = calculateQuizResult(questions, userAnswers);
 
-        const quizData = {
+        const createQuizData: CreateQuizData = {
             punctuation: result.punctuation,
-            percentage: result.percentage,
             remarks: result.remarks,
+            category: category
         };
 
         try {
             setSubmitting(true);
-            await createQuiz(quizData);
+            await createQuiz(createQuizData);
             setSubmitting(false);
             setQuizResult(result);
             setIsFinished(true);
