@@ -23,7 +23,10 @@ const MyQuizzes: FC = () => {
             <ul className="quizzes-list">
                 {quizzes.map((quiz) => (
                     <li key={quiz.id} className="quiz-item">
-                        <div className="quiz-punctuation">Score: {quiz.punctuation}</div>
+                        <div className="quiz-header">
+                            <div className="quiz-punctuation">Score: {quiz.punctuation}%</div>
+                            <div className="quiz-category">Category: {quiz.category}</div>
+                        </div>
                         <div className="quiz-remarks">Remarks: {quiz.remarks}</div>
                     </li>
                 ))}

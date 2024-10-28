@@ -29,8 +29,7 @@ export const calculateQuizResult = (questions: Question[], answers: Answer[]): Q
     }
 
     return {
-        punctuation: totalPoints,
-        percentage: percentage,
+        punctuation: percentage,
         remarks,
     };
 };

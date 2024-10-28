@@ -12,12 +12,12 @@ const Score: FC<ScoreProps> = ({ questions, userAnswers, result }) => {
             <div className="score-summary">
                 <p>You scored:</p>
                 <div className="score-number">
-                    <span>{result?.percentage}%</span>
+                    <span>{result?.punctuation}%</span>
                 </div>
                 <div className="progress-bar">
                     <div
                         className="progress-fill"
-                        style={{ width: `${result?.percentage}%` }}
+                        style={{ width: `${result?.punctuation}%` }}
                     ></div>
                 </div>
             </div>
