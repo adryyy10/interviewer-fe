@@ -20,6 +20,7 @@ import Footer from './Footer';
 import './AppContent.css';
 import NotFound from './NotFound';
 import MyQuizzes from './MyQuizzes';
+import MyQuizDetail from './MyQuizDetail';
 
 const AppContent: FC = () => {
     const location = useLocation();
@@ -50,6 +51,7 @@ const AppContent: FC = () => {
                         <Route path={AppRoutes.CreateQuestion} element={<CreateQuestionForm />} />
                         <Route path={AppRoutes.Dashboard} element={<Dashboard />} />
                         <Route path={AppRoutes.MyQuizzes} element={<MyQuizzes />} />
+                        <Route path={AppRoutes.QuizDetails} element={<MyQuizDetail />} />
                     </Route>
 
                     {/* Other Routes */}

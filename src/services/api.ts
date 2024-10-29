@@ -60,6 +60,8 @@ export const fetchAdminQuestionById = (id: number): Promise<AxiosResponse<Questi
 
 export const fetchQuestions = (category: string | null) => api.get(category ? `/questions?category=${category}` : Routes.Questions);
 
+export const fetchQuizById = (id: number): Promise<AxiosResponse<Quiz>> => api.get<Quiz>(`${Routes.Quizzes}/${id}`, getConfig());
+
 export const fetchMyQuizzes = (): Promise<AxiosResponse<HydraMemberResponse<Quiz>>> => api.get(Routes.MyQuizzes, getConfig());
 
 // POST

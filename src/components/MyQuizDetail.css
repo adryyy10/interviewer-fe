@@ -1,0 +1,133 @@
+.quiz-detail-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.back-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+.quiz-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.quiz-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.quiz-info p {
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.questions-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.questions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.question-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.question-content {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.question-number {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.selected-answer {
+    font-size: 1rem;
+    color: #555;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust as needed */
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #007bff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .quiz-detail-container {
+        padding: 15px;
+    }
+
+    .quiz-title {
+        font-size: 1.5rem;
+    }
+
+    .quiz-info p {
+        font-size: 1rem;
+    }
+
+    .questions-title {
+        font-size: 1.2rem;
+    }
+
+    .question-content {
+        font-size: 1rem;
+    }
+
+    .selected-answer {
+        font-size: 0.9rem;
+    }
+
+    .back-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
