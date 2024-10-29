@@ -3,6 +3,7 @@ import { createQuestion } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import './CreateQuestionForm.css';
 import { QuestionData } from '../types/question/QuestionData';
+import { Routes } from '../constants/routes';
 
 const CreateQuestionForm: FC = () => {
     const [content, setContent] = useState<string>('');
@@ -38,7 +39,7 @@ const CreateQuestionForm: FC = () => {
             setContent('');
             setCategory('');
 
-            navigate('/admin/questions');
+            navigate(Routes.AdminQuestions);
 
         } catch (err: unknown) {
             let errorMessage = 'An error occurred.';

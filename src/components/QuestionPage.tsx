@@ -10,6 +10,7 @@ import { QuizResult } from '../types/quiz/QuizResult';
 import { createQuiz } from '../services/api';
 import useQuery from '../hooks/useQuery';
 import { CreateQuizData } from '../types/quiz/CreateQuizData';
+import { UserAnswerInput } from '../types/quiz/UserAnswerInput';
 
 const QuestionPage: FC = () => {
     const { questions, loading, error }: UseQuestionsResponse = useQuestions();
@@ -34,13 +35,25 @@ const QuestionPage: FC = () => {
         });
     };
 
+    // TODO: Fix adding userAnswers when creating Quiz
+    const userAnswersInput: UserAnswerInput[] = userAnswers.map((answer, index) => {
+        const questionId = questions[index].id;
+        const selectedAnswerId = answer.id;
+
+        return {
+            question: `/admin/questions/${questionId}`,
+            selectedAnswer: `/answers/${selectedAnswerId}`,
+        };
+    });
+
     const handleFinishQuiz = async () => {
         const result: QuizResult = calculateQuizResult(questions, userAnswers);
 
         const createQuizData: CreateQuizData = {
             punctuation: result.punctuation,
             remarks: result.remarks,
-            category: category
+            category: category,
+            userAnswers: userAnswersInput,
         };
 
         try {
