@@ -70,46 +70,48 @@ const QuestionPage: FC = () => {
 
     return (
         <div className="question-page-container">
-            {questions.length > 0 ? (
-                !isFinished ? (
-                    <div>
-                        <Question
-                            question={questions[currentQuestionIndex]} 
-                            currentQuestionIndex={currentQuestionIndex + 1}
-                            totalQuestions={questions.length}
-                            onAnswer={handleAnswer}
-                        />
-                        <div className="button-container">
-                            <button 
-                                onClick={() => setCurrentQuestionIndex(prev => prev - 1)} 
-                                disabled={currentQuestionIndex === 0}>
-                                Previous
-                            </button>
-                            {currentQuestionIndex < questions.length - 1 ? (
+            <div className="question-page-content">
+                {questions.length > 0 ? (
+                    !isFinished ? (
+                        <div>
+                            <Question
+                                question={questions[currentQuestionIndex]} 
+                                currentQuestionIndex={currentQuestionIndex + 1}
+                                totalQuestions={questions.length}
+                                onAnswer={handleAnswer}
+                            />
+                            <div className="button-container">
                                 <button 
-                                    onClick={() => setCurrentQuestionIndex(prev => prev + 1)}>
-                                    Next
+                                    onClick={() => setCurrentQuestionIndex(prev => prev - 1)} 
+                                    disabled={currentQuestionIndex === 0}>
+                                    Previous
                                 </button>
-                            ) : (
-                                <button
-                                    onClick={handleFinishQuiz}
-                                    disabled={submitting}
-                                >
-                                    {submitting ? 'Submitting...' : 'Finish'}
-                                </button>
-                            )}
+                                {currentQuestionIndex < questions.length - 1 ? (
+                                    <button 
+                                        onClick={() => setCurrentQuestionIndex(prev => prev + 1)}>
+                                        Next
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={handleFinishQuiz}
+                                        disabled={submitting}
+                                    >
+                                        {submitting ? 'Submitting...' : 'Finish'}
+                                    </button>
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <Score
+                            questions={questions}
+                            userAnswers={userAnswers}
+                            result={quizResult}
+                        />
+                    )
                 ) : (
-                    <Score
-                        questions={questions}
-                        userAnswers={userAnswers}
-                        result={quizResult}
-                    />
-                )
-            ) : (
-                <div className="loading-container">No questions available for this category.</div>
-            )}
+                    <div className="loading-container">No questions available for this category.</div>
+                )}
+            </div>
         </div>
     );
 };

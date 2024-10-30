@@ -1,8 +1,38 @@
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #a881af;
-    --text-color: #333;
-    --background-color: #f8f9fa;
+    /* Primary Colors - For primary and secondary actions, headers and key buttons */
+    --primary-color: #1E3A8A; /* Deep Blue */
+    --secondary-color: #6B46C1; /* Vibrant Purple */
+    --secondary-color-hover: #5a189a; 
+
+    /* Accent Colors - To draw user's attention */
+    --accent-color: #38B2AC; /* Teal */
+    --accent-color-light: #afeeeb; /* Teal */
+    --accent-color-hover: #1d9892;
+    --highlight-color: #D69E2E; /* Amber */
+
+    /* Neutral Colors - Improve readability */
+    --text-color: #2D3748; /* Dark Gray */
+    --background-color: #EDF2F7; /* Light Gray */
+    --soft-white: #FFFFFF; /* Soft White */
+    --muted-purple: #A78BFA; /* Muted Purple */
+
+    /* Status Colors */
+    --success-color: #48BB78;
+    --error-color: #E53E3E;
+
+    /* Admin Side Colors */
+    --admin-primary-color: #2C3E50; /* Dark Slate Blue */
+    --admin-secondary-color: #34495E; /* Midnight Blue */
+    --admin-accent-color: #1ABC9C; /* Teal */
+    --admin-success-color: #27AE60; /* Emerald Green */
+    --admin-error-color: #E74C3C; /* Alizarin Red */
+    --admin-background-color: #ECF0F1; /* Cloud White */
+    --admin-border-color: #BDC3C7; /* Asphalt Gray */
+    --admin-text-color: #2C3E50; /* Soft Black */
+
+    /* Typography */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* UI Elements */
     --border-radius: 10px;
 }

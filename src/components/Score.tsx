@@ -30,8 +30,7 @@ const Score: FC<ScoreProps> = ({ questions, userAnswers, result }) => {
 
                     return (
                         <div key={index} className="result-item">
-                            <h3>Question {index + 1}</h3>
-                            <p className="question-content">{question.content}</p>
+                            <p className="result-item-question-content">Question {index + 1}: {question.content}</p>
                             <div className="answer-feedback">
                                 {isCorrect ? (
                                     <FaCheckCircle className="icon correct-icon" />

@@ -108,7 +108,7 @@ const AdminQuestionDetails: FC = () => {
 
     return (
         <div className="admin-question-details-container">
-            <button className="back-button" onClick={handleBackClick}>
+            <button className="admin-question-details-back-button" onClick={handleBackClick}>
                 <FaArrowLeft /> Back to Questions
             </button>
             <div className="question-details-card">
