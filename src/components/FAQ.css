@@ -1,12 +1,16 @@
 .faq-section {
     width: 90%;
-    background-color: #ffffff;
+    max-width: 800px;
+    background-color: var(--soft-white);
     padding: 30px 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
 }
 
 .faq-title {
     font-size: 2.5rem;
-    color: #343a40;
+    color: var(--primary-color);
     margin-bottom: 25px;
     text-align: center;
 }
@@ -18,7 +22,7 @@
 }
 
 .faq-item {
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--background-color);
     padding-bottom: 10px;
 }
 
@@ -29,32 +33,66 @@
     outline: none;
     text-align: left;
     font-size: 1.1rem;
-    color: #80669d;
+    color: var(--secondary-color);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    transition: color 0.3s ease, transform 0.8s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .faq-question:hover {
-    color: #cb99d4;
+    color: var(--highlight-color);
+    transform: scale(1.02);
 }
 
 .faq-icon {
     font-size: 1.5rem;
     margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.faq-icon.open {
+    transform: rotate(180deg);
 }
 
 .faq-answer {
     margin-top: 10px;
     font-size: 1rem;
-    color: #495057;
+    color: var(--text-color);
     line-height: 1.6;
     padding-left: 10px;
 }
 
+.error-message {
+    color: var(--error-color);
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust as needed */
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid var(--primary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .faq-title {
         font-size: 2rem;

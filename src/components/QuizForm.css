@@ -3,19 +3,19 @@
   flex-direction: column;
   justify-content: center; /* Center vertically */
   align-items: center;     /* Center horizontally */
-  border: 2px solid #ddd;
+  background-color: var(--soft-white);
+  border: 2px solid var(--background-color);
   border-radius: var(--border-radius);
   padding: 40px;
-  background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   margin: 40px auto;
 }
 
 .quiz-main-title {
   font-size: 2rem;
-  color: var(--text-color);
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
@@ -31,7 +31,7 @@
   align-self: flex-start;
   margin-bottom: 10px;
   font-size: 1rem;
-  color: #555;
+  color: var(--text-color);
 }
 
 .quiz-category-select {
@@ -39,26 +39,47 @@
   font-size: 16px;
   margin-bottom: 20px;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--background-color);
   border-radius: var(--border-radius);
   outline: none;
   box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-category-select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 5px var(--accent-color);
 }
 
 .quiz-main-button {
   padding: 10px 20px;
   font-size: 16px;
-  color: white;
+  color: var(--soft-white);
   background-color: var(--secondary-color);
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
 }
 
 .quiz-main-button:hover {
-  background-color: #80669d;
+  background-color: var(--muted-purple);
+  transform: translateY(-2px);
+}
+
+.quiz-main-button:active {
+  background-color: var(--primary-color);
+  transform: translateY(0);
+}
+
+.quiz-main-button:disabled {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  cursor: not-allowed;
+  transform: translateY(0);
 }
 
 /* Responsive Design */

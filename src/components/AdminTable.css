@@ -1,0 +1,32 @@
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    border: 1px solid var(--admin-border-color);
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .admin-table th {
+    background-color: var(--admin-primary-color);
+    color: var(--soft-white);
+    font-weight: bold;
+  }
+  
+  .admin-table tr {
+    cursor: pointer;
+  }
+  
+  .admin-table tr:nth-child(even) {
+    background-color: var(--admin-background-color);
+  }
+  
+  .admin-table tr:hover {
+    background-color: var(--admin-secondary-color);
+    color: var(--soft-white);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }

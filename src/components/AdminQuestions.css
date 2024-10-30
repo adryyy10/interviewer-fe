@@ -1,15 +1,17 @@
+@import url("AdminTable.css");
+
 .question-admin-container {
-    margin: 20px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--admin-background-color);
+  border: 1px solid var(--admin-border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .question-admin-title {
   font-size: 1.8rem;
-  color: var(--text-color);
+  color: var(--admin-text-color);
   margin-bottom: 20px;
   text-align: center;
 }
@@ -20,47 +22,57 @@
   align-items: center;
   margin-bottom: 20px;
 }
-  
+
 .question-add-button {
-  background-color: #80669d;
-  color: white;
+  background-color: var(--admin-accent-color);
+  color: var(--soft-white);
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   font-size: 16px;
   border-radius: var(--border-radius);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .question-add-button:hover {
-  background-color: #6c429c;
+  background-color: var(--admin-secondary-color);
+  transform: translateY(-2px);
 }
 
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
+.error-message {
+  color: var(--admin-error-color);
+  font-size: 1.2rem;
+  text-align: center;
   margin-top: 20px;
 }
 
-.admin-table th,
-.admin-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .question-admin-title {
+      font-size: 1.5rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+      font-size: 14px;
+      padding: 8px;
+  }
 }
 
-.admin-table th {
-  cursor: auto;
-  background-color: #80669d;
-  color: white;
-  font-weight: bold;
-}
+@media (max-width: 480px) {
+  .question-admin-container {
+      padding: 15px 10px;
+      margin: 10px auto;
+  }
 
-.admin-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+  .question-add-button {
+      padding: 8px 16px;
+      font-size: 14px;
+  }
 
-.admin-table tr:hover {
-  background-color: #e9ecef;
-  transition: background-color 0.3s ease;
+  .admin-table th,
+  .admin-table td {
+      font-size: 12px;
+      padding: 6px;
+  }
 }
-  

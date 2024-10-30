@@ -2,9 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: auto auto;
-    padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 600px;
 }
 
@@ -17,13 +15,13 @@
 
 .question-title {
     font-size: 24px;
-    color: var(--text-color);
+    color: var(--primary-color);
     margin: 0;
 }
 
 .question-counter {
     font-size: 1em;
-    background-color: #2e9131;
+    background-color: var(--secondary-color);
     color: #fff;
     padding: 8px 16px;
     border-radius: 20px;
@@ -37,11 +35,11 @@
 }
 
 .correct-answer-explanation {
-    margin-top: 15px;
-    padding: 10px;
-    font-size: 14px;
-    color: var(--text-color);
-    background-color: #f1f1f1;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: 1px solid var(--background-color);
     border-radius: var(--border-radius);
-    border: 1px solid #ccc;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    background-color: var(--accent-color-light);
+    color: var(--text-color);
 }

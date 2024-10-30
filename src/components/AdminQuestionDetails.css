@@ -2,39 +2,35 @@
     width: 800px;
     margin: auto;
     padding: 20px;
-    background-color: #ffffff;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.back-button {
-    display: flex;
-    align-items: center;
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 12px;
+.admin-question-details-back-button {
+    background-color: var(--admin-accent-color);
+    color: var(--soft-white);
+    padding: 10px 20px;
     border: none;
-    border-radius: var(--border-radius);
     cursor: pointer;
-    margin-bottom: 20px;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.back-button:hover {
-    background-color: #45a049;
+.admin-question-details-back-button:hover {
+    background-color: var(--admin-secondary-color);
+    transform: translateY(-2px);
 }
 
 .question-details-card {
     padding: 20px;
-    background-color: #f9f9f9;
-    border-left: 5px solid #4CAF50;
+    background-color: var(--background-color);
+    border-left: 5px solid var(--admin-success-color);
     border-radius: var(--border-radius);
 }
 
 .question-details-card h2 {
-    margin-bottom: 20px;
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 .question-detail {
@@ -45,44 +41,43 @@
 .label {
     flex: 1;
     font-weight: bold;
-    color: #555555;
+    color: var(--admin-primary-color);
 }
 
 .value {
     flex: 2;
-    color: #777777;
+    color: var(--admin-text-color);
 }
 
 .error-message {
-    color: red;
+    color: var(--admin-error-color);
     font-weight: bold;
 }
 
 .edit-button, .save-button, .cancel-button {
-    display: flex;
-    align-items: center;
-    background-color: #008CBA;
-    color: white;
-    padding: 8px 12px;
+    background-color: var(--admin-accent-color);
+    color: var(--soft-white);
+    padding: 10px 20px;
     border: none;
-    border-radius: var(--border-radius);
     cursor: pointer;
-    margin-top: 20px;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 20px 0px;
 }
 
 .edit-button:hover, .save-button:hover {
-    background-color: #007B9E;
+    background-color: var(--admin-secondary-color);
+    transform: translateY(-2px);
 }
 
 .cancel-button {
-    background-color: #f44336;
+    background-color: var(--admin-error-color);
     margin-left: 10px;
 }
 
 .cancel-button:hover {
-    background-color: #da190b;
+    background-color: var(--admin-error-color);
 }
 
 .edit-form {
@@ -98,7 +93,7 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555555;
+    color: var(--text-color);
 }
 
 .form-group input,

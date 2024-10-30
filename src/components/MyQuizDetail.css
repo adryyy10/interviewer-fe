@@ -1,27 +1,33 @@
 .quiz-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    min-height: calc(70vh - 120px);
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
 }
 
+
 .back-button {
-    background-color: #6c757d;
-    color: white;
+    background-color: var(--secondary-color);
+    color: #ffffff;
     border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    margin-bottom: 20px;
     transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .back-button:hover {
-    background-color: #5a6268;
+    background-color: var(--secondary-color-hover);
 }
 
 .quiz-title {
     font-size: 2rem;
-    color: #333;
+    color: var(--primary-color);
     margin-bottom: 10px;
     text-align: center;
 }
@@ -34,13 +40,15 @@
 }
 
 .quiz-info p {
-    margin: 5px 0;
     font-size: 1.1rem;
+    color: var(--text-color);
+    margin: 5px 0;
 }
 
 .questions-title {
     font-size: 1.5rem;
-    color: #333;
+    color: var(--primary-color);
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -50,16 +58,16 @@
 }
 
 .question-item {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background-color: var(--background-color);
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius);
     padding: 15px;
     margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .question-content {
     font-size: 1.1rem;
+    color: var(--text-color);
     margin-bottom: 5px;
 }
 
@@ -70,11 +78,11 @@
 
 .selected-answer {
     font-size: 1rem;
-    color: #555;
+    color: var(--accent-color);
 }
 
 .error-message {
-    color: #dc3545;
+    color: var(--error-color);
     font-size: 1.2rem;
     text-align: center;
     margin-top: 20px;
@@ -89,7 +97,7 @@
 
 .spinner {
     border: 8px solid #f3f3f3;
-    border-top: 8px solid #007bff;
+    border-top: 8px solid var(--primary-color);
     border-radius: 50%;
     width: 60px;
     height: 60px;
