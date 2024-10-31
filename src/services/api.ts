@@ -9,6 +9,7 @@ import { UpdateUserData } from "../types/user/UpdateUserData";
 import { Quiz } from "../types/quiz/Quiz";
 import { HydraMemberResponse } from "../types/api/HydraMemberResponse";
 import { CreateQuizData } from "../types/quiz/CreateQuizData";
+import { CreateQuizResponse } from "../types/api/CreateQuizResponse";
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -73,8 +74,8 @@ export const signup = (data: SignupData): Promise<AxiosResponse<AuthResponse>> =
     return api.post<AuthResponse>(Routes.Signup, data, getContentTypeConfig());
 };
 
-export const createQuiz = async (data: Omit<CreateQuizData, 'id'>): Promise<AxiosResponse<CreateQuestionResponse>> => {
-    return api.post<CreateQuestionResponse>(Routes.Quizzes, data, getConfig());
+export const createQuiz = async (data: CreateQuizData): Promise<AxiosResponse<CreateQuizResponse>> => {
+    return api.post<CreateQuizResponse>(Routes.Quizzes, data, getConfig());
 };
 
 // PATCH
