@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5;
+    background-color: var(--background-color);
     padding: 20px;
 }
 
@@ -22,13 +22,13 @@
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 .btn-submit {
     width: 100%;
     padding: 0.75rem;
-    background-color: #80669d;
+    background-color: var(--secondary-color);
     color: #ffffff;
     border: none;
     border-radius: var(--border-radius);
@@ -39,7 +39,7 @@
 }
 
 .btn-submit:hover {
-    background-color: #6c429c;
+    background-color: var(--secondary-color-hover);
 }
 
 /* Responsive adjustments */
