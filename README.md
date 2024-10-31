@@ -2,6 +2,8 @@
 
 The **Interviewer Quiz Application** offers a dynamic quiz system where candidates can take quizzes tailored to various programming languages and topics. The application also includes an administrative dashboard for managing users and overseeing quiz content.
 
+![alt text](./public/landing.png)
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -22,6 +24,8 @@ The **Interviewer Quiz Application** offers a dynamic quiz system where candidat
 - **User Authentication**
   - Secure login and signup functionality.
   - Role-based access control (Admin and Regular Users).
+  
+  ![alt text](./public/login.png)
 
 - **Quiz Management**
   - Create, edit, and delete quiz questions.
@@ -34,10 +38,16 @@ The **Interviewer Quiz Application** offers a dynamic quiz system where candidat
   - Score summary upon quiz completion.
   - Option to retake quizzes.
 
+  ![alt text](./public/quiz.png)
+
+  ![alt text](./public/score.png)
+
 - **Administrative Dashboard**
   - Manage all quiz questions and approve content.
   - Manage user accounts and assign roles.
   - View comprehensive statistics and analytics.
+
+  ![alt text](./public/admin.png)
 
 - **Responsive Design**
   - Optimized for various devices, including desktops, tablets, and mobile phones.

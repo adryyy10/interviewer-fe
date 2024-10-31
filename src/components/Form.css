@@ -1,7 +1,7 @@
 .btn-submit {
     width: 100%;
     padding: 0.75rem;
-    background-color: #80669d;
+    background-color: var(--secondary-color);
     color: #ffffff;
     border: none;
     border-radius: var(--border-radius);
@@ -12,7 +12,7 @@
 }
 
 .btn-submit:hover {
-    background-color: #6c429c;
+    background-color: var(--secondary-color-hover);
 }
 
 .form-control {
@@ -25,7 +25,7 @@
 .form-control label {
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #555555;
+    color: var(--text-color);
 }
 
 /* Input fields */
@@ -45,7 +45,7 @@
 }
 
 .form-control input:focus {
-    border-color: #80669d;
+    border-color: var(--secondary-color);
     outline: none;
     box-shadow: 0 0 0 1px rgba(128, 102, 157, 1);
 }
@@ -84,11 +84,11 @@
 }
 
 .toggle-auth-a {
-    color: #80669d;
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
 .toggle-auth-a:hover {
-    color: #6c429c;
+    color: var(--secondary-color-hover);
     text-decoration: underline;
 }
