@@ -1,24 +1,15 @@
-import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { FC } from 'react';
 import './LandingPage.css';
 import FAQ from './FAQ';
+import LandingPageContent from './LandingPageContent';
 
 const LandingPage: FC = () => {
-    return (
-        <div className="landing-page-container">
-            <div className="landing-page-content">
-                <h1 className="landing-page-title">Ace Your Interviews with Expert Questions!</h1>
-                <p className="landing-page-description">
-                    Prepare for your next big opportunity with our tailored interview questions. Enhance your skills, gain confidence, and land your dream job.
-                </p>
-                <Link to="/quiz" className="landing-page-cta-button">
-                    Start Your Quiz
-                </Link>
-            </div>
-
-            <FAQ />
-        </div>
-    );
+  return (
+    <section className="landing-page-container">
+      <LandingPageContent />
+      <FAQ />
+    </section>
+  );
 };
 
 export default LandingPage;
