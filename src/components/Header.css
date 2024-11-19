@@ -20,6 +20,10 @@
     height: 50px;
 }
 
+.header-logo-link {
+    text-decoration: none;
+}
+
 .header-user {
     display: flex;
     align-items: center;

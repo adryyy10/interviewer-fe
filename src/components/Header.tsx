@@ -13,7 +13,7 @@ const Header: FC = () => {
         <header className="header">
             <div className="header-content">
                 <div className="header-logo">
-                    <Link to="/">
+                    <Link to="/" className='header-logo-link'>
                         <Logo />
                     </Link>
                 </div>
