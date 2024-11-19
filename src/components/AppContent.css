@@ -2,5 +2,4 @@
     display: flex;
     flex-direction: column;
     min-height: calc(70vh - 120px); /* Calculated based on Header and Footer height */
-    box-sizing: border-box;
 }

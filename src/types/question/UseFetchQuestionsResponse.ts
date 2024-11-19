@@ -1,6 +1,6 @@
 import { Question } from "./Question";
 
-export interface UseQuestionsResponse {
+export interface UseFetchQuestionsResponse {
     questions: Question[];
     loading: boolean;
     error: string | null;

@@ -8,6 +8,7 @@ export enum Routes {
     Auth = "/auth/lookup",
     Signup = "/signup",
     Questions = "/questions",
+    Answers = "/answers",
     AdminBase = "/admin",
     Dashboard = "/admin/dashboard",
     AdminQuestions = "/admin/questions",
