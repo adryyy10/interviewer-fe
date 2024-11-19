@@ -2,65 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     background-color: var(--background-color);
     padding: 40px;
 }
 
 .question-page-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    width: 600px;
     margin: 20px;
     background-color: var(--soft-white);
     border-radius: var(--border-radius);
     padding: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    box-sizing: border-box;
-}
-
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.button-container button {
-    padding: 10px 20px;
-    font-size: 16px; 
-    color: var(--soft-white);
-    background-color: var(--secondary-color);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 20%;
-}
-
-.button-container button:hover {
-    background-color: var(--muted-purple);
-    transform: translateY(-2px);
-}
-
-.button-container button:disabled {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    cursor: not-allowed;
-    transform: translateY(0);
-}
-
-.question-page-container > div {
-    width: 100%;
-}
-
-.error-message {
-    color: var(--error-color);
-    font-size: 1.2rem;
-    text-align: center;
-    margin-top: 20px;
 }
 
 .loading-container {

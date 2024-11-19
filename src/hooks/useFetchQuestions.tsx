@@ -5,16 +5,16 @@ import queryString from 'query-string';
 import { Question } from '../types';
 import { HydraMemberResponse } from '../types/api/HydraMemberResponse';
 import { AxiosResponse } from 'axios';
-import { UseQuestionsResponse } from '../types/question/UseQuestionResponse';
+import { UseFetchQuestionsResponse } from '../types/question/UseFetchQuestionsResponse';
 
-const useQuestions = (): UseQuestionsResponse => {
+const useFetchQuestions = (): UseFetchQuestionsResponse => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const location = useLocation();
+    const location = useLocation(); // url in web browser
 
     useEffect(() => {
-        const parsed = queryString.parse(location.search);
+        const parsed = queryString.parse(location.search); // everything that starts with ?
         const category: string | null = typeof parsed.category === 'string' ? parsed.category : null;
 
         const getQuestions = async () => {
@@ -35,4 +35,4 @@ const useQuestions = (): UseQuestionsResponse => {
     return { questions, loading, error };
 };
 
-export default useQuestions;
+export default useFetchQuestions;

@@ -1,16 +1,14 @@
 .quiz-main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center vertically */
   align-items: center;     /* Center horizontally */
-  background-color: var(--soft-white);
   border: 2px solid var(--background-color);
   border-radius: var(--border-radius);
   padding: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-  margin: 40px auto;
+  margin: 120px auto;
 }
 
 .quiz-main-title {
