@@ -1,90 +1,139 @@
-import React, { useState, ChangeEvent, FormEvent, FC } from 'react';
-import { createQuestion } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useState, ChangeEvent, FormEvent, FC } from 'react';
 import './CreateQuestionForm.css';
 import { QuestionData } from '../types/question/QuestionData';
-import { Routes } from '../constants/routes';
+import { categories } from '../constants/questionCategories';
+import { useCreateQuestion } from '../hooks/useCreateQuestion';
+import { Answer } from '../types/answer/Answer';
+import AdminAnswerItem from './AdminAnswerItem';
 
 const CreateQuestionForm: FC = () => {
-    const [content, setContent] = useState<string>('');
-    const [category, setCategory] = useState<string>('');
-    const [error, setError] = useState<string>('');
-    const [success, setSuccess] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const [category, setCategory] = useState<string>(categories[0].toLowerCase());
+  const [approved, setApproved] = useState<string>('false');
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const { error, createNewQuestion } = useCreateQuestion();
 
-    const navigate = useNavigate();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
 
-    // Handle input changes with proper event typing
-    const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setContent(e.target.value);
+    const data: QuestionData = {
+      content,
+      category,
+      approved,
+      answers,
     };
 
-    const handleCategoryChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setCategory(e.target.value);
-    };
+    await createNewQuestion(data);
 
-    // Handle form submission with proper event and error typing
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
-        event.preventDefault();
+    setContent('');
+    setCategory(categories[0].toLowerCase());
+    setApproved('false');
+    setAnswers([{ content: '', correct: false, explanation: '' }]);
+  };
 
-        const data: QuestionData = {
-            content,
-            category,
-        };
+  const handleAnswerChange = <T extends keyof Answer>(
+    index: number,
+    field: T,
+    value: Answer[T]
+  ) => {
+    const updatedAnswers = [...answers];
+    updatedAnswers[index][field] = value;
+    setAnswers(updatedAnswers);
+  };
 
-        try {
-            await createQuestion(data);
+  const addAnswer = () => {
+    setAnswers([...answers, { content: '', correct: false, explanation: '' }]);
+  };
 
-            setSuccess('Question created successfully!');
-            setError('');
-            setContent('');
-            setCategory('');
+  const removeAnswer = (index: number) => {
+    const updatedAnswers = answers.filter((_, i) => i !== index);
+    setAnswers(updatedAnswers);
+  };
 
-            navigate(Routes.AdminQuestions);
-
-        } catch (err: unknown) {
-            let errorMessage = 'An error occurred.';
-
-            if (err instanceof Error) {
-                errorMessage = 'An error occurred: ' + (err.message || errorMessage);
-            } else if (typeof err === 'object' && err !== null && 'response' in err) {
-                const anyErr = err as any;
-                errorMessage = 'An error occurred: ' + (anyErr.response?.data?.message || errorMessage);
-            }
-
-            setError(errorMessage);
-            setSuccess('');
-        }
-    };
-
+  const renderAnswers = () => {
     return (
-        <div className="form-container">
-            <h2>Create a New Question</h2>
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">{success}</p>}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="content">Content:</label>
-                    <textarea
-                        id="content"
-                        value={content}
-                        onChange={handleContentChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="category">Category:</label>
-                    <input
-                        type="text"
-                        id="category"
-                        value={category}
-                        onChange={handleCategoryChange}
-                        required
-                    />
-                </div>
-                <button type="submit">Create Question</button>
-            </form>
-        </div>
+      <section className="answers-section">
+        <header className='answers-section-header'>
+          <h3>Answers</h3>
+          <button type="button" onClick={addAnswer} className="add-answer-button">
+            Add new answer
+          </button>
+        </header>
+        {answers.map((answer, index) => (
+          <AdminAnswerItem
+            key={index}
+            index={index}
+            answer={answer}
+            onChange={(field, value) => handleAnswerChange(index, field, value)}
+            onRemove={() => removeAnswer(index)}
+          />
+        ))}
+      </section>
     );
+  };
+
+  const renderContent = () => (
+    <div>
+      <label htmlFor="content">Content:</label>
+      <textarea
+        id="content"
+        value={content}
+        onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setContent(event.target.value)}
+        required
+      />
+    </div>
+  );
+
+  const renderCategory = () => (
+    <div>
+      <label htmlFor="category">Category:</label>
+      <select
+        id="category"
+        name="category"
+        value={category}
+        onChange={(event: ChangeEvent<HTMLSelectElement>) => setCategory(event.target.value)}
+        required
+      >
+        {categories.map((cat: string) => (
+          <option key={cat} value={cat}>
+            {cat}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+
+  const renderApprove = () => (
+    <div>
+      <label htmlFor="approved">Approve question:</label>
+      <select
+        id="approved"
+        name="approved"
+        value={approved}
+        onChange={(event: ChangeEvent<HTMLSelectElement>) => setApproved(event.target.value)}
+        required
+      >
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+  );
+
+  return (
+    <section className="create-question-container">
+      <h2>Create a new question</h2>
+
+      {error && <p className="error">{error}</p>}
+
+      <form onSubmit={handleSubmit}>
+        {renderContent()}
+        {renderCategory()}
+        {renderApprove()}
+        {renderAnswers()}
+        <button type="submit">Create question</button>
+      </form>
+    </section>
+  );
 };
 
 export default CreateQuestionForm;

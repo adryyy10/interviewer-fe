@@ -3,6 +3,10 @@
   padding-bottom: 10px;
 }
 
+.faq-item:last-child {
+  border-bottom: none;
+}
+
 .faq-item-question {
   width: 100%;
   background: none;
