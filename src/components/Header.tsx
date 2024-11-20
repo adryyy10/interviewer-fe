@@ -7,42 +7,51 @@ import { Routes } from '../constants/routes';
 import { FaTachometerAlt, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
 
 const Header: FC = () => {
-    const { token, logOut } = useAuth();
+  const { token, logOut } = useAuth();
 
-    return (
-        <header className="header">
-            <div className="header-content">
-                <div className="header-logo">
-                    <Link to="/" className='header-logo-link'>
-                        <Logo />
-                    </Link>
-                </div>
+  const renderUserMenu = () => (
+    <nav aria-label="User Menu" className="user-menu">
+      <span className="user-menu-title">Settings</span>
+      <ul className="user-dropdown">
+        <li className="dropdown-item">
+          <Link to={Routes.Dashboard} className="dropdown-link">
+            <FaTachometerAlt className="dropdown-icon" /> Dashboard
+          </Link>
+        </li>
+        <li className="dropdown-item">
+          <Link to={Routes.MyQuizzes} className="dropdown-link">
+            <FaClipboardList className="dropdown-icon" /> My Quizzes
+          </Link>
+        </li>
+        <li className="dropdown-item">
+          <button onClick={logOut} className="dropdown-link logout-button">
+            <FaSignOutAlt className="dropdown-icon" /> Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
 
-                <div className="header-user">
-                    {token ? (
-                        <div className="user-menu">
-                            <span className="user-menu-title">Settings</span>
-                            <div className="user-dropdown">
-                                <Link to={Routes.Dashboard} className="dropdown-item">
-                                    <FaTachometerAlt className="dropdown-icon" /> Dashboard
-                                </Link>
-                                <Link to={Routes.MyQuizzes} className="dropdown-item">
-                                    <FaClipboardList className="dropdown-icon" /> My Quizzes
-                                </Link>
-                                <button onClick={logOut} className="dropdown-item logout-button">
-                                    <FaSignOutAlt className="dropdown-icon" /> Logout
-                                </button>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="login-signup">
-                            <Link to={Routes.Login} className="login-link">Login</Link>
-                        </div>
-                    )}
-                </div>
-            </div>
-        </header>
-    );
+  const renderLoginMenu = () => (
+    <nav aria-label="Login Menu" className="login-signup">
+      <Link to={Routes.Login} className="login-link">Login</Link>
+    </nav>
+  );
+
+  return (
+    <header className="header">
+      <div className="header-content">
+        <div className="header-logo">
+          <Link to="/" className="header-logo-link" aria-label="Homepage">
+            <Logo />
+          </Link>
+        </div>
+        <div className="header-user">
+          {token ? renderUserMenu() : renderLoginMenu()}
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
