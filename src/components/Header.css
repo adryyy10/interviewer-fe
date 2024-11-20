@@ -42,7 +42,7 @@
 
 .login-signup a:hover,
 .user-menu-title:hover {
-    text-decoration: underline;
+    color: var(--admin-text-color);
 }
 
 .logout-button {
