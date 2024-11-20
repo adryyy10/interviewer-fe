@@ -52,49 +52,7 @@
   .results-list {
     text-align: left;
   }
-  
-  .result-item {
-    background: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: var(--border-radius);
-    border-left: 5px solid var(--success-color);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-  
-  .result-item-question-content {
-    font-size: 1.3em;
-    font-weight: 500;
-    color: var(--primary-color);
-  }
-  
-  .answer-feedback {
-    display: flex;
-    align-items: center;
-    font-size: 1em;
-    margin-bottom: 5px;
-  }
-  
-  .icon {
-    margin-right: 10px;
-    font-size: 1.5em;
-  }
-  
-  .correct-icon {
-    color: var(--success-color);
-  }
-  
-  .incorrect-icon {
-    color: var(--error-color);
-  }
-  
-  .correct-answer {
-    color: var(--error-color);
-    font-weight: bold;
-    margin-left: 30px;
-  }
-  
+
   .retake-button {
     padding: 12px 25px;
     font-size: 1em;
