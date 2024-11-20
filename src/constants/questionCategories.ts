@@ -1,7 +1,7 @@
 export const categories: string[] = [
-  'All', 
-  'PHP', 
-  'JS', 
-  'Python', 
-  'Java'
+  'all', 
+  'php', 
+  'js', 
+  'python', 
+  'java'
 ];

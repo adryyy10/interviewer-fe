@@ -67,7 +67,7 @@ export const fetchMyQuizzes = (): Promise<AxiosResponse<HydraMemberResponse<Quiz
 
 // POST
 export const createQuestion = async (questionData: Omit<QuestionData, 'id'>): Promise<AxiosResponse<CreateQuestionResponse>> => {
-    return api.post<CreateQuestionResponse>(Routes.Questions, questionData, getConfig());
+    return api.post<CreateQuestionResponse>(Routes.AdminQuestions, questionData, getConfig());
 };
 
 export const signup = (data: SignupData): Promise<AxiosResponse<AuthResponse>> => {
