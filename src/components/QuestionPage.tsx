@@ -14,11 +14,18 @@ import { UserAnswerInput } from '../types/quiz/UserAnswerInput';
 import { Routes } from '../constants/routes';
 import QuizNavigationButtons from './QuizNavigationButtons';
 
+interface UserAnswerState {
+  answer: Answer | null;
+  attempted: boolean;
+}
+
 const QuestionPage: FC = () => {
   const { questions, loading, error }: UseFetchQuestionsResponse = useFetchQuestions();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [isFinished, setIsFinished] = useState<boolean>(false);
-  const [userAnswers, setUserAnswers] = useState<Answer[]>([]);
+  const [userAnswers, setUserAnswers] = useState<UserAnswerState[]>(
+    questions.map(() => ({ answer: null, attempted: false }))
+  );
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
 
@@ -32,15 +39,18 @@ const QuestionPage: FC = () => {
   const handleAnswer = (answer: Answer) => {
     setUserAnswers((prevAnswers) => {
       const updatedAnswers = [...prevAnswers];
-      updatedAnswers[currentQuestionIndex] = answer;
+      updatedAnswers[currentQuestionIndex] = {
+        answer,
+        attempted: true,
+      };
       return updatedAnswers;
     });
   };
 
   // TODO: Fix adding userAnswers when creating Quiz
-  const userAnswersInput: UserAnswerInput[] = userAnswers.map((answer, index) => {
+  const userAnswersInput: UserAnswerInput[] = userAnswers.map((userAnswer, index) => {
     const questionId = questions[index].id;
-    const selectedAnswerId = answer.id;
+    const selectedAnswerId = userAnswer.answer?.id;
 
     return {
       question: `${Routes.AdminQuestions}/${questionId}`,
@@ -49,7 +59,10 @@ const QuestionPage: FC = () => {
   });
 
   const handleFinishQuiz = async () => {
-    const result: QuizResult = calculateQuizResult(questions, userAnswers);
+    const result: QuizResult = calculateQuizResult(
+      questions,
+      userAnswers.map((userAnswerState) => userAnswerState.answer).filter((answer): answer is Answer => answer !== null)
+    );
 
     const createQuizData: CreateQuizData = {
       punctuation: result.punctuation,
@@ -77,10 +90,12 @@ const QuestionPage: FC = () => {
             !isFinished ? (
               <Fragment>
                 <Question
-                  question={questions[currentQuestionIndex]} 
+                  question={questions[currentQuestionIndex]}
                   currentQuestionIndex={currentQuestionIndex + 1}
                   totalQuestions={questions.length}
                   onAnswer={handleAnswer}
+                  selectedAnswer={userAnswers[currentQuestionIndex]?.answer || null}
+                  attempted={userAnswers[currentQuestionIndex]?.attempted || false}
                 />
                 <QuizNavigationButtons
                   currentQuestionIndex={currentQuestionIndex}
@@ -94,7 +109,7 @@ const QuestionPage: FC = () => {
             ) : (
               <Score
                 questions={questions}
-                userAnswers={userAnswers}
+                userAnswers={userAnswers.map((userAnswerState) => userAnswerState.answer).filter((answer): answer is Answer => answer !== null)}
                 result={quizResult}
               />
             )

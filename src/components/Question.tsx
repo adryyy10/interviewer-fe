@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from 'react';
+import { FC } from 'react';
 import './Question.css';
 import AnswerItem from './AnswerItem';
 import { Answer } from '../types/answer/Answer';
@@ -9,22 +9,14 @@ const Question: FC<QuestionProps> = ({
   currentQuestionIndex,
   totalQuestions,
   onAnswer,
+  selectedAnswer,
+  attempted,
 }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<Answer | null>(null);
-  const [attempted, setAttempted] = useState<boolean>(false);
   const correctAnswer = question.answers.find((ans) => ans.correct);
-
-  // Reset state when a new question is displayed
-  useEffect(() => {
-    setSelectedAnswer(null);
-    setAttempted(false);
-  }, [question]);
 
   const handleAnswerClick = (answer: Answer) => {
     if (attempted) return;
 
-    setSelectedAnswer(answer);
-    setAttempted(true);
     onAnswer(answer); // Pass the selected answer back to QuestionPage
   };
 
@@ -41,7 +33,7 @@ const Question: FC<QuestionProps> = ({
           <AnswerItem
             key={index}
             answer={answer}
-            isSelected={selectedAnswer === answer}
+            isSelected={selectedAnswer?.id === answer.id}
             attempted={attempted}
             onClick={() => handleAnswerClick(answer)}
           />

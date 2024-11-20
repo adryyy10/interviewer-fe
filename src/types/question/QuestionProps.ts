@@ -6,4 +6,6 @@ export interface QuestionProps {
     currentQuestionIndex: number;
     totalQuestions: number;
     onAnswer: (answer: Answer) => void;
+    selectedAnswer: Answer | null;
+    attempted: boolean;
 }
