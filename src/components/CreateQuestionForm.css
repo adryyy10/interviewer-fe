@@ -64,7 +64,7 @@ option {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: var(--secondary-color);
+    background-color: var(--admin-accent-color);
     color: white;
     border: none;
     border-radius: var(--border-radius);
@@ -75,7 +75,7 @@ option {
 }
 
 .create-question-container button:hover {
-    background-color: #80669d;
+    background-color: var(--admin-secondary-color);
 }
 
 .create-question-container p.error {

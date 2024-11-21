@@ -49,12 +49,19 @@
     color: var(--admin-text-color);
 }
 
+.loading-message {
+    text-align: center;
+}
+
 .error-message {
+    text-align: center;
     color: var(--admin-error-color);
     font-weight: bold;
 }
 
 .edit-button, .save-button, .cancel-button {
+    display: flex;
+    align-items: center;
     background-color: var(--admin-accent-color);
     color: var(--soft-white);
     padding: 10px 20px;
@@ -77,7 +84,12 @@
 }
 
 .cancel-button:hover {
-    background-color: var(--admin-error-color);
+    background-color: var(--admin-error-color-blur);
+    transform: translateY(-2px);
+}
+
+.edit-button svg, .save-button svg, .cancel-button svg {
+    margin-right: 5px;
 }
 
 .edit-form {
@@ -100,6 +112,7 @@
 .form-group select,
 .form-group textarea {
     width: 100%;
+    max-width: -webkit-fill-available;
     padding: 8px 10px;
     border: 1px solid #cccccc;
     border-radius: var(--border-radius);

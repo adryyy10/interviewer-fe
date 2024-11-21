@@ -7,9 +7,15 @@
 }
 
 .answer-item .remove-answer-button {
+  display: flex;
+  align-items: center;
   width: fit-content;
   margin-left: auto;
   background-color: var(--admin-error-color-blur);
+}
+
+.answer-item .remove-answer-button svg {
+  margin-right: 5px;
 }
 
 .answer-item .remove-answer-button:hover {
