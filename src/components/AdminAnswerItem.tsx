@@ -1,6 +1,7 @@
 import { FC, ChangeEvent } from 'react';
 import { Answer } from '../types/answer/Answer';
 import './AdminAnswerItem.css';
+import { FaTimes } from 'react-icons/fa';
 
 interface AnswerItemProps {
   index: number;
@@ -78,7 +79,7 @@ const AdminAnswerItem: FC<AnswerItemProps> = ({ index, answer, onChange, onRemov
       {renderAnswerCorrect(index, answer, onChange)}
       {renderAnswerExplanation(index, answer, onChange)}
       <button type="button" onClick={onRemove} className="remove-answer-button">
-        Remove Answer
+      <FaTimes /> Remove Answer
       </button>
     </article>
   );
