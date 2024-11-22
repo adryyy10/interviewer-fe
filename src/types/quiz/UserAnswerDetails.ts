@@ -4,5 +4,5 @@ import { Answer } from '../answer/Answer';
 export interface UserAnswerDetail {
     id: number;
     question: Question;
-    selectedAnswer: Answer;
+    answer: Answer;
 }
