@@ -1,4 +1,4 @@
 export interface UserAnswerInput {
     question: string; 
-    selectedAnswer: string;
+    answer: string;
 }

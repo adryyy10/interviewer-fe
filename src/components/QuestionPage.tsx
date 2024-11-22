@@ -47,14 +47,13 @@ const QuestionPage: FC = () => {
     });
   };
 
-  // TODO: Fix adding userAnswers when creating Quiz
   const userAnswersInput: UserAnswerInput[] = userAnswers.map((userAnswer, index) => {
     const questionId = questions[index].id;
     const selectedAnswerId = userAnswer.answer?.id;
 
     return {
       question: `${Routes.AdminQuestions}/${questionId}`,
-      selectedAnswer: `${Routes.Answers}/${selectedAnswerId}`,
+      answer: `${Routes.Answers}/${selectedAnswerId}`,
     };
   });
 

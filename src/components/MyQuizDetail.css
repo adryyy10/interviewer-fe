@@ -3,82 +3,109 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    min-height: calc(70vh - 120px);
-    background-color: var(--background-color);
-    border-radius: var(--border-radius);
-    box-sizing: border-box;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
 }
 
+.quiz-detail-content {
+    background-color: #ffffff;
+    padding: 25px;
+    margin: 30px 0px;
+    border-radius: var(--border-radius);
+}
 
-.back-button {
-    background-color: var(--secondary-color);
+.quiz-detail-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.quiz-title, .questions-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-detail-header .back-button {
+    background: linear-gradient(90deg, var(--secondary-color), var(--secondary-color-hover));
     color: #ffffff;
+    margin: 0;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .back-button:hover {
-    background-color: var(--secondary-color-hover);
-}
-
-.quiz-title {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    text-align: center;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .quiz-info {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
 }
 
 .quiz-info p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-color);
-    margin: 5px 0;
-}
-
-.questions-title {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin: 10px 0;
+    line-height: 1.5;
 }
 
 .questions-list {
     list-style: none;
     padding: 0;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 0px;
 }
 
 .question-item {
-    background-color: var(--background-color);
+    background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: var(--border-radius);
-    padding: 15px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.question-item:last-child {
+    margin-bottom: 0px;
 }
 
 .question-content {
     font-size: 1.1rem;
     color: var(--text-color);
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .question-number {
     font-weight: bold;
-    margin-right: 5px;
+    color: var(--accent-color);
+    margin-right: 8px;
 }
 
-.selected-answer {
-    font-size: 1rem;
-    color: var(--accent-color);
+.selected-answer-correct {
+    color: var(--success-color);
+    font-weight: bold;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.selected-answer-incorrect {
+    color: var(--error-color);
+    font-weight: bold;
+    margin-top: 8px;
+    display: inline-block;
 }
 
 .error-message {
@@ -86,13 +113,17 @@
     font-size: 1.2rem;
     text-align: center;
     margin-top: 20px;
+    padding: 10px;
+    background-color: #fdecea;
+    border: 1px solid #f5c2c2;
+    border-radius: var(--border-radius);
 }
 
 .loading-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh; /* Adjust as needed */
+    height: 80vh;
 }
 
 .spinner {
@@ -109,13 +140,13 @@
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .quiz-detail-container {
         padding: 15px;
     }
 
     .quiz-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .quiz-info p {
@@ -123,7 +154,7 @@
     }
 
     .questions-title {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
 
     .question-content {
@@ -135,7 +166,7 @@
     }
 
     .back-button {
-        padding: 6px 12px;
+        padding: 10px 16px;
         font-size: 0.9rem;
     }
 }

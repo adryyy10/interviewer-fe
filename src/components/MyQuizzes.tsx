@@ -2,25 +2,26 @@ import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useMyQuizzes from '../hooks/useMyQuizzes';
 import './MyQuizzes.css';
+import { Routes } from '../constants/routes';
 
 const MyQuizzes: FC = () => {
     const { quizzes, loading, error } = useMyQuizzes();
     const navigate = useNavigate();
 
     if (loading) {
-        return <div className="quizzes-loading">Loading your quizzes...</div>;
+        return <div className="quizzes-loading quizzes-placeholder">Loading your quizzes...</div>;
     }
 
     if (error) {
-        return <div className="quizzes-error">{error}</div>;
+        return <div className="quizzes-error quizzes-placeholder">{error}</div>;
     }
 
     if (quizzes.length === 0) {
-        return <div className="quizzes-empty">You have no past quizzes.</div>;
+        return <div className="quizzes-empty quizzes-placeholder">You have no past quizzes.</div>;
     }
 
     const handleQuizClick = (quizId: number) => {
-        navigate(`/quizzes/${quizId}`);
+        navigate(`${Routes.Quizzes}/${quizId}`);
     };
 
     return (

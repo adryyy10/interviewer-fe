@@ -16,6 +16,10 @@
     text-align: center;
 }
 
+.quizzes-placeholder {
+    margin: auto;
+}
+
 .quizzes-list {
     list-style: none;
     padding: 0;
