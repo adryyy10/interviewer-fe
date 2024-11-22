@@ -24,10 +24,6 @@
     font-weight: 600;
 }
 
-option {
-    text-transform: capitalize;
-}
-
 .create-question-container textarea,
 .create-question-container input[type="text"],
 .create-question-container select {

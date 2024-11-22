@@ -50,11 +50,11 @@ const AppContent: FC = () => {
                         <Route path={AppRoutes.AdminQuestionDetails} element={<AdminQuestionDetails />} />
                         <Route path={AppRoutes.CreateQuestion} element={<CreateQuestionForm />} />
                         <Route path={AppRoutes.Dashboard} element={<Dashboard />} />
-                        <Route path={AppRoutes.MyQuizzes} element={<MyQuizzes />} />
-                        <Route path={AppRoutes.QuizDetails} element={<MyQuizDetail />} />
                     </Route>
 
                     {/* Other Routes */}
+                    <Route path={AppRoutes.MyQuizzes} element={<MyQuizzes />} />
+                    <Route path={AppRoutes.QuizDetails} element={<MyQuizDetail />} />
                     <Route path={AppRoutes.LandingPage} element={<LandingPage />} />
                     <Route path={AppRoutes.faq} element={<FAQ />} />
                     <Route path={AppRoutes.Quiz} element={<QuizForm />} />
