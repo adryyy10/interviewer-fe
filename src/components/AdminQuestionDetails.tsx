@@ -1,7 +1,7 @@
 import { FC, useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Question } from '../types';
-import { fetchAdminQuestionById } from '../services/api';
+import { fetchAdminQuestionById, deleteAdminQuestionById } from '../services/api';
 import { Routes } from '../constants/routes';
 import { FaArrowLeft, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
 import './AdminQuestionDetails.css';
@@ -43,6 +43,15 @@ const AdminQuestionDetails: FC = () => {
     setIsEditing(true);
     resetUpdateMessages();
   };
+
+  const handleDeleteQuestion = () => {
+    try {
+      deleteAdminQuestionById(Number(id));
+      navigate(Routes.AdminQuestions); 
+    } catch (error) {
+      console.error('Error deleting question:', error);
+    }
+  }
 
   const handleCancelEdit = () => {
     setIsEditing(false);
@@ -109,9 +118,14 @@ const AdminQuestionDetails: FC = () => {
           <span className="label">Is approved:</span>
           <span className="value">{question.approved ? 'Approved' : 'No'}</span>
         </div>
-        <button className="edit-button" onClick={handleEditClick}>
-          <FaEdit /> Edit Question
-        </button>
+        <div className='question-detail-buttons'>
+          <button className="edit-button" onClick={handleEditClick}>
+            <FaEdit /> Edit Question
+          </button>
+          <button className="cancel-button" onClick={handleDeleteQuestion}>
+            <FaTimes /> Delete Question
+          </button>
+        </div>
         {updateSuccess && <p className="success-message">{updateSuccess}</p>}
         {updateError && <p className="error-message">{updateError}</p>}
       </article>

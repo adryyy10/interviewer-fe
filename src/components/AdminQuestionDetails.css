@@ -59,6 +59,12 @@
     font-weight: bold;
 }
 
+.question-detail-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .edit-button, .save-button, .cancel-button {
     display: flex;
     align-items: center;

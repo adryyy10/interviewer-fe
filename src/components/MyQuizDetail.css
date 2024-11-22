@@ -49,9 +49,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.quiz-info {
-}
-
 .quiz-info p {
     font-size: 1.2rem;
     color: var(--text-color);

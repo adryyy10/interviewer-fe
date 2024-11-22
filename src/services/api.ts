@@ -86,6 +86,9 @@ export const updateAdminQuestionById = (
     return api.patch<Question>(`${Routes.AdminQuestions}/${id}`, questionData, getPatchConfig());
 };
 
+// DELETE
+export const deleteAdminQuestionById = (id: number): Promise<AxiosResponse<Question>> => api.delete(`${Routes.AdminQuestions}/${id}`, getConfig());
+
 export const updateAdminUserById = (
     id: number,
     userData: UpdateUserData
