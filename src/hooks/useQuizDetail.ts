@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchQuizById } from '../services/api';
 import { Quiz } from '../types/quiz/Quiz';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, HttpStatusCode } from 'axios';
 import { UseQuizDetailResponse } from '../types/quiz/UseQuizDetailsResponse';
 
 const useQuizDetail = (quizId: number): UseQuizDetailResponse => {
@@ -19,10 +19,8 @@ const useQuizDetail = (quizId: number): UseQuizDetailResponse => {
                 let errorMessage = 'Failed to fetch quiz details.';
                 if (axios.isAxiosError(err)) {
                     const axiosError = err as AxiosError;
-                    if (axiosError.response) {
-                        errorMessage = (axiosError.response.data as any).message || errorMessage;
-                    } else if (axiosError.request) {
-                        errorMessage = 'No response received from the server.';
+                    if (axiosError.response?.status === HttpStatusCode.Forbidden) {
+                        errorMessage = "You can't access this quiz";
                     } else {
                         errorMessage = axiosError.message;
                     }

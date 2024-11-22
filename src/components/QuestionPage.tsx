@@ -13,6 +13,7 @@ import { CreateQuizData } from '../types/quiz/CreateQuizData';
 import { UserAnswerInput } from '../types/quiz/UserAnswerInput';
 import { Routes } from '../constants/routes';
 import QuizNavigationButtons from './QuizNavigationButtons';
+import { useAuth } from '../hooks/AuthProvider';
 
 interface UserAnswerState {
   answer: Answer | null;
@@ -20,6 +21,7 @@ interface UserAnswerState {
 }
 
 const QuestionPage: FC = () => {
+  const { token } = useAuth();
   const { questions, loading, error }: UseFetchQuestionsResponse = useFetchQuestions();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [isFinished, setIsFinished] = useState<boolean>(false);
@@ -72,7 +74,9 @@ const QuestionPage: FC = () => {
 
     try {
       setSubmitting(true);
-      await createQuiz(createQuizData);
+      if (token) {
+        await createQuiz(createQuizData);
+      }
       setSubmitting(false);
       setQuizResult(result);
       setIsFinished(true);
