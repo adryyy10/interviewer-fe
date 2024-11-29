@@ -10,6 +10,8 @@ import { Quiz } from "../types/quiz/Quiz";
 import { HydraMemberResponse } from "../types/api/HydraMemberResponse";
 import { CreateQuizData } from "../types/quiz/CreateQuizData";
 import { CreateQuizResponse } from "../types/api/CreateQuizResponse";
+import { CreateFeedbackResponse } from "../types/api/CreateFeedbackResponse";
+import { FeedbackData } from "../types/question/FeedbackData";
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -77,6 +79,11 @@ export const signup = (data: SignupData): Promise<AxiosResponse<AuthResponse>> =
 export const createQuiz = async (data: CreateQuizData): Promise<AxiosResponse<CreateQuizResponse>> => {
     return api.post<CreateQuizResponse>(Routes.Quizzes, data, getConfig());
 };
+
+export const createFeedback = async (feedbackData: Omit<FeedbackData, 'id'>): Promise<AxiosResponse<CreateFeedbackResponse>> => {
+    return api.post<CreateFeedbackResponse>(Routes.Feedback, feedbackData, getConfig());
+};
+
 
 // PATCH
 export const updateAdminQuestionById = (
