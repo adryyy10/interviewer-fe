@@ -4,7 +4,7 @@ import './Header.css';
 import { useAuth } from '../hooks/AuthProvider';
 import Logo from './Logo';
 import { Routes } from '../constants/routes';
-import { FaTachometerAlt, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
+import { FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
 
 const Header: FC = () => {
   const { token, logOut } = useAuth();
@@ -13,11 +13,6 @@ const Header: FC = () => {
     <nav aria-label="User Menu" className="user-menu">
       <span className="user-menu-title">Settings</span>
       <ul className="user-dropdown">
-        <li className="dropdown-item">
-          <Link to={Routes.Dashboard} className="dropdown-link">
-            <FaTachometerAlt className="dropdown-icon" /> Dashboard
-          </Link>
-        </li>
         <li className="dropdown-item">
           <Link to={Routes.MyQuizzes} className="dropdown-link">
             <FaClipboardList className="dropdown-icon" /> My Quizzes

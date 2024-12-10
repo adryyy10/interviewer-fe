@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import './Footer.css';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { Routes } from '../constants/routes';
+import Logo from './Logo';
 
 const Footer: FC = () => {
   const renderLeftSection = () => (
     <div className="footer-left">
-      <Link to={Routes.LandingPage} aria-label="Homepage">
-        <span className="footer-logo">Interviewer</span>
-      </Link>
+        <div className="header-logo">
+          <Link to="/" className="footer-logo-link" aria-label="Homepage">
+            <Logo />
+          </Link>
+        </div>
       <p className="footer-description">
         Empowering you to ace your interviews with tailored questions and comprehensive preparation tools.
       </p>
