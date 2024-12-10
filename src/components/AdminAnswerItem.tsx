@@ -74,7 +74,7 @@ const renderAnswerExplanation = (
 
 const AdminAnswerItem: FC<AnswerItemProps> = ({ index, answer, onChange, onRemove }) => {
   return (
-    <article className="answer-item">
+    <article className="answer-article-item">
       {renderAnswerContent(index, answer, onChange)}
       {renderAnswerCorrect(index, answer, onChange)}
       {renderAnswerExplanation(index, answer, onChange)}
