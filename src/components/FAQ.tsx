@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import faqData from "../constants/faqData";
 import './FAQ.css';
 import FAQItem from "./FAQItem";

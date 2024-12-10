@@ -18,11 +18,12 @@
     margin-bottom: 20px;
 }
 
-.footer-logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #ffffff;
+.footer-logo-link {
     text-decoration: none;
+}
+
+.footer-logo-link .logo-text {
+    color: white;
 }
 
 .footer-description {
