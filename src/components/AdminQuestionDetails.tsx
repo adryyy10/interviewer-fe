@@ -1,45 +1,25 @@
-import { FC, useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import { FC, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Question } from '../types';
-import { fetchAdminQuestionById, deleteAdminQuestionById } from '../services/api';
+import { deleteAdminQuestionById } from '../services/api';
 import { Routes } from '../constants/routes';
 import { FaArrowLeft, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
 import './AdminQuestionDetails.css';
 import { useUpdateAdminQuestion } from '../hooks/useUpdateAdminQuestion';
 import { categories } from '../constants/questionCategories';
+import { useFetchAdminQuestionDetails } from '../hooks/useFetchAdminQuestionDetails';
 
 const AdminQuestionDetails: FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [question, setQuestion] = useState<Question | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
+  const questionId = id ? Number(id) : null;
+  const { question, setQuestion, loading, error } = useFetchAdminQuestionDetails(questionId);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [formData, setFormData] = useState<Partial<Question>>({});
   const navigate = useNavigate();
   const { updateSuccess, updateError, updateAdminQuestion, resetUpdateMessages } = useUpdateAdminQuestion();
 
-  useEffect(() => {
-    const getQuestion = async () => {
-      if (!id) {
-        setError('No question ID provided.');
-        setLoading(false);
-        return;
-      }
-      try {
-        const response = await fetchAdminQuestionById(Number(id));
-        setQuestion(response.data);
-        setFormData(response.data);
-      } catch (err) {
-        console.error('Error fetching question details:', err);
-        setError('Failed to fetch question details. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    getQuestion();
-  }, [id]);
-
   const handleEditClick = () => {
+    setFormData(question || {});
     setIsEditing(true);
     resetUpdateMessages();
   };
@@ -99,6 +79,37 @@ const AdminQuestionDetails: FC = () => {
     return <div className="admin-question-details-container"><p>Question not found.</p></div>;
   }
 
+  const renderManagerQuestion = () => {
+    return (
+      <div className='question-detail-buttons'>
+        <button className="edit-button" onClick={handleEditClick}>
+          <FaEdit /> Edit Question
+        </button>
+        <button className="cancel-button" onClick={handleDeleteQuestion}>
+          <FaTimes /> Delete Question
+        </button>
+      </div>
+    );
+  }
+
+  const renderAnswers = (answers: Question["answers"]) => {
+    return (
+      <section className="answers-section">
+        <h3>Answers</h3>
+        <ul className="answers-list">
+          {answers.map((answer, index) => (
+            <li key={index} className="answer-item">
+              <span className="answer-content">{answer.content}</span>
+              <span className={`answer-badge ${answer.correct ? "correct" : "incorrect"}`}>
+                {answer.correct ? "Correct" : "Incorrect"}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  };
+
   const renderQuestionDetails = (question: Question) => {
     return(
       <article>
@@ -118,14 +129,10 @@ const AdminQuestionDetails: FC = () => {
           <span className="label">Is approved:</span>
           <span className="value">{question.approved ? 'Approved' : 'No'}</span>
         </div>
-        <div className='question-detail-buttons'>
-          <button className="edit-button" onClick={handleEditClick}>
-            <FaEdit /> Edit Question
-          </button>
-          <button className="cancel-button" onClick={handleDeleteQuestion}>
-            <FaTimes /> Delete Question
-          </button>
-        </div>
+
+        { (question.answers.length > 0) ? renderAnswers(question.answers) : ''}
+
+        { renderManagerQuestion() }
         {updateSuccess && <p className="success-message">{updateSuccess}</p>}
         {updateError && <p className="error-message">{updateError}</p>}
       </article>

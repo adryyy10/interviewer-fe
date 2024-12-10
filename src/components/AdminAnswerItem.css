@@ -1,4 +1,4 @@
-.answer-item {
+.answer-article-item {
   margin-bottom: 30px;
   margin-left: 100px;
   border-radius: var(--border-radius);
@@ -6,7 +6,7 @@
   border: 1px solid ;
 }
 
-.answer-item .remove-answer-button {
+.answer-article-item .remove-answer-button {
   display: flex;
   align-items: center;
   width: fit-content;
@@ -14,10 +14,10 @@
   background-color: var(--admin-error-color-blur);
 }
 
-.answer-item .remove-answer-button svg {
+.answer-article-item .remove-answer-button svg {
   margin-right: 5px;
 }
 
-.answer-item .remove-answer-button:hover {
+.answer-article-item .remove-answer-button:hover {
   background-color: var(--admin-error-color);
 }
