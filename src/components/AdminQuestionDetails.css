@@ -199,3 +199,59 @@
     background-color: var(--admin-error-color);
     color: white;
   }
+
+
+  .answers-edit-section {
+    margin-top: 20px;
+  }
+
+  .answers-edit-section h3 {
+    color: var(--text-color);
+  }
+  
+  .answer-edit-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background: #f9f9f9;
+  }
+  
+  .answer-edit-item .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .remove-answer-button,
+  .add-answer-button {
+    background-color: var(--admin-error-color);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .add-answer-button {
+    background-color: var(--admin-accent-color);
+    margin-top: 10px;
+  }
+  
+  .remove-answer-button:hover {
+    background-color: var(--admin-error-color-blur);
+  }
+  
+  .add-answer-button:hover {
+    background-color: var(--admin-secondary-color);
+  }
+  
+  .remove-answer-button:active,
+  .add-answer-button:active {
+    transform: translateY(2px);
+  }
+  
