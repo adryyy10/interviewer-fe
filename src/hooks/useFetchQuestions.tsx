@@ -14,12 +14,16 @@ const useFetchQuestions = (): UseFetchQuestionsResponse => {
     const location = useLocation(); // url in web browser
 
     useEffect(() => {
-        const parsed = queryString.parse(location.search); // everything that starts with ?
-        const category: string | null = typeof parsed.category === 'string' ? parsed.category : null;
+        const parsed = queryString.parse(location.search, { arrayFormat: "bracket" }); // Parse arrays in query string
+        const categories = Array.isArray(parsed.category)
+          ? (parsed.category as string[])
+          : parsed.category
+          ? [parsed.category as string]
+          : null;
 
         const getQuestions = async () => {
             try {
-                const response: AxiosResponse<HydraMemberResponse<Question>> = await fetchQuestions(category);
+                const response: AxiosResponse<HydraMemberResponse<Question>> = await fetchQuestions(categories);
                 setQuestions(response.data['hydra:member']);
             } catch (err) {
                 console.error('Error fetching questions:', err);
