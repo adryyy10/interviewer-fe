@@ -139,15 +139,95 @@ const AdminQuestionDetails: FC = () => {
     );
   }
 
+  const renderEditAnswers = () => {
+    const handleAnswerChange = <T extends keyof Question["answers"][0]>(
+      index: number,
+      field: T,
+      value: Question["answers"][0][T]
+    ) => {
+      const updatedAnswers = [...(formData.answers || [])];
+      if (updatedAnswers[index]) {
+        updatedAnswers[index][field] = value;
+      }
+      setFormData((prev) => ({
+        ...prev,
+        answers: updatedAnswers,
+      }));
+    };
+  
+    const handleAddAnswer = () => {
+      setFormData((prev) => ({
+        ...prev,
+        answers: [...(prev.answers || []), { content: "", correct: false }],
+      }));
+    };
+  
+    const handleRemoveAnswer = (index: number) => {
+      setFormData((prev) => ({
+        ...prev,
+        answers: (prev.answers || []).filter((_, i) => i !== index),
+      }));
+    };
+
+    return (
+      <div className="answers-edit-section">
+          <h3>Edit Answers</h3>
+          {(formData.answers || []).map((answer, index) => (
+            <div key={index} className="answer-edit-item">
+              <div className="form-group">
+                <label htmlFor={`answer-content-${index}`}>Answer Content:</label>
+                <input
+                  id={`answer-content-${index}`}
+                  type="text"
+                  value={answer.content}
+                  onChange={(e) =>
+                    handleAnswerChange(index, "content", e.target.value)
+                  }
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor={`answer-correct-${index}`}>Correct:</label>
+                <select
+                  id={`answer-correct-${index}`}
+                  value={answer.correct ? "true" : "false"}
+                  onChange={(e) =>
+                    handleAnswerChange(index, "correct", e.target.value === "true")
+                  }
+                >
+                  <option value="false">No</option>
+                  <option value="true">Yes</option>
+                </select>
+              </div>
+              <button
+                type="button"
+                className="remove-answer-button"
+                onClick={() => handleRemoveAnswer(index)}
+              >
+                Remove Answer
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="add-answer-button"
+            onClick={handleAddAnswer}
+          >
+            Add Answer
+          </button>
+        </div>
+    );
+  }
+
   const renderEditForm = () => {
-    return(
+    return (
       <form onSubmit={handleSubmit} className="edit-form">
         <div className="form-group">
           <label htmlFor="content">Content:</label>
           <textarea
             id="content"
             name="content"
-            value={formData.content || ''}
+            value={formData.content || ""}
             onChange={handleInputChange}
             required
           />
@@ -157,7 +237,7 @@ const AdminQuestionDetails: FC = () => {
           <select
             id="category"
             name="category"
-            value={formData.category || ''}
+            value={formData.category || ""}
             onChange={handleInputChange}
             required
           >
@@ -173,29 +253,39 @@ const AdminQuestionDetails: FC = () => {
           <select
             id="approved"
             name="approved"
-            value={formData.approved ? 'true' : 'false'}
-            onChange={(e) => setFormData((prev) => ({
-              ...prev,
-              approved: e.target.value === 'true',
-            }))}
+            value={formData.approved ? "true" : "false"}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                approved: e.target.value === "true",
+              }))
+            }
             required
           >
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>
         </div>
+  
+        {renderEditAnswers()}
+  
         <div className="form-actions">
           <button type="submit" className="save-button">
             <FaSave /> Save Changes
           </button>
-          <button type="button" className="cancel-button" onClick={handleCancelEdit}>
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={handleCancelEdit}
+          >
             <FaTimes /> Cancel
           </button>
         </div>
         {updateError && <p className="error-message">{updateError}</p>}
       </form>
     );
-  }
+  };
+  
 
   return (
     <div className="admin-question-details-container">
