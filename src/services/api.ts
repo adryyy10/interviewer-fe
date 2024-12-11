@@ -61,7 +61,13 @@ export const fetchAdminUserById = (id: number): Promise<AxiosResponse<User>> => 
 
 export const fetchAdminQuestionById = (id: number): Promise<AxiosResponse<Question>> => api.get(`${Routes.AdminQuestions}/${id}`, getConfig());
 
-export const fetchQuestions = (category: string | null) => api.get(category ? `${Routes.Questions}?category=${category}` : Routes.Questions);
+export const fetchQuestions = (categories: string[] | null): Promise<AxiosResponse<HydraMemberResponse<Question>>> => {
+    const query = categories
+      ? categories.map((category) => `category[]=${encodeURIComponent(category)}`).join("&")
+      : "";
+    const url = query ? `${Routes.Questions}?${query}` : Routes.Questions;
+    return api.get(url);
+  };
 
 export const fetchQuizById = (id: number): Promise<AxiosResponse<Quiz>> => api.get<Quiz>(`${Routes.Quizzes}/${id}`, getConfig());
 

@@ -1,39 +1,58 @@
-import { useState, ChangeEvent, FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './QuizForm.css';
-import { Routes } from '../constants/routes';
-import { categories } from '../constants/questionCategories';
+import { useState, FC } from "react";
+import { useNavigate } from "react-router-dom";
+import "./QuizForm.css";
+import { Routes } from "../constants/routes";
+import { categories } from "../constants/questionCategories";
 
 const QuizForm: FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>(categories[0]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const navigate = useNavigate();
 
+  const toggleCategory = (category: string): void => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+  };
+
   const handleStartQuestionnaire = (): void => {
-    let navigateRoute = (selectedCategory === 'All') 
-      ? Routes.Questions 
-      : `${Routes.Questions}?category=${encodeURIComponent(selectedCategory)}`;
-    navigate(navigateRoute)
+    const query = selectedCategories
+      .map((category) => `category[]=${encodeURIComponent(category)}`)
+      .join("&");
+
+    // if categories includes 'all' show all categories regardless other categories
+    const navigateRoute = selectedCategories.length && !selectedCategories.includes('all')
+      ? `${Routes.Questions}?${query}`
+      : Routes.Questions;
+
+    navigate(navigateRoute);
   };
 
   return (
     <main className="quiz-main-container">
       <h1 className="quiz-main-title">Interviewer</h1>
-      <form className='quiz-main-form' onSubmit={(e) => e.preventDefault()}>
-        <label htmlFor="category-select" className="quiz-category-label">Select Category:</label>
-        <select
-          id="category-select"
-          className="quiz-category-select"
-          value={selectedCategory}
-          onChange={(event: ChangeEvent<HTMLSelectElement>) => setSelectedCategory(event.target.value)}
-        >
+      <form className="quiz-main-form" onSubmit={(e) => e.preventDefault()}>
+        <label className="quiz-category-label">Select Categories:</label>
+        <div className="categories-container">
           {categories.map((category: string) => (
-            <option key={category} value={category}>
+            <div
+              key={category}
+              className={`category-item ${
+                selectedCategories.includes(category) ? "selected" : ""
+              }`}
+              onClick={() => toggleCategory(category)}
+            >
               {category}
-            </option>
+            </div>
           ))}
-        </select>
-        <button type="submit" className="quiz-main-button" onClick={handleStartQuestionnaire}>
-            Start Questionnaire
+        </div>
+        <button
+          type="submit"
+          className="quiz-main-button"
+          onClick={handleStartQuestionnaire}
+        >
+          Start Questionnaire
         </button>
       </form>
     </main>
