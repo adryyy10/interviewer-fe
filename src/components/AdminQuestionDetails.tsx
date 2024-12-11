@@ -139,7 +139,7 @@ const AdminQuestionDetails: FC = () => {
     );
   }
 
-  const renderEditForm = () => {
+  const renderEditAnswers = () => {
     const handleAnswerChange = <T extends keyof Question["answers"][0]>(
       index: number,
       field: T,
@@ -168,7 +168,58 @@ const AdminQuestionDetails: FC = () => {
         answers: (prev.answers || []).filter((_, i) => i !== index),
       }));
     };
-  
+
+    return (
+      <div className="answers-edit-section">
+          <h3>Edit Answers</h3>
+          {(formData.answers || []).map((answer, index) => (
+            <div key={index} className="answer-edit-item">
+              <div className="form-group">
+                <label htmlFor={`answer-content-${index}`}>Answer Content:</label>
+                <input
+                  id={`answer-content-${index}`}
+                  type="text"
+                  value={answer.content}
+                  onChange={(e) =>
+                    handleAnswerChange(index, "content", e.target.value)
+                  }
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor={`answer-correct-${index}`}>Correct:</label>
+                <select
+                  id={`answer-correct-${index}`}
+                  value={answer.correct ? "true" : "false"}
+                  onChange={(e) =>
+                    handleAnswerChange(index, "correct", e.target.value === "true")
+                  }
+                >
+                  <option value="false">No</option>
+                  <option value="true">Yes</option>
+                </select>
+              </div>
+              <button
+                type="button"
+                className="remove-answer-button"
+                onClick={() => handleRemoveAnswer(index)}
+              >
+                Remove Answer
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="add-answer-button"
+            onClick={handleAddAnswer}
+          >
+            Add Answer
+          </button>
+        </div>
+    );
+  }
+
+  const renderEditForm = () => {
     return (
       <form onSubmit={handleSubmit} className="edit-form">
         <div className="form-group">
@@ -216,52 +267,7 @@ const AdminQuestionDetails: FC = () => {
           </select>
         </div>
   
-        <div className="answers-edit-section">
-          <h3>Edit Answers</h3>
-          {(formData.answers || []).map((answer, index) => (
-            <div key={index} className="answer-edit-item">
-              <div className="form-group">
-                <label htmlFor={`answer-content-${index}`}>Answer Content:</label>
-                <input
-                  id={`answer-content-${index}`}
-                  type="text"
-                  value={answer.content}
-                  onChange={(e) =>
-                    handleAnswerChange(index, "content", e.target.value)
-                  }
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor={`answer-correct-${index}`}>Correct:</label>
-                <select
-                  id={`answer-correct-${index}`}
-                  value={answer.correct ? "true" : "false"}
-                  onChange={(e) =>
-                    handleAnswerChange(index, "correct", e.target.value === "true")
-                  }
-                >
-                  <option value="false">No</option>
-                  <option value="true">Yes</option>
-                </select>
-              </div>
-              <button
-                type="button"
-                className="remove-answer-button"
-                onClick={() => handleRemoveAnswer(index)}
-              >
-                Remove Answer
-              </button>
-            </div>
-          ))}
-          <button
-            type="button"
-            className="add-answer-button"
-            onClick={handleAddAnswer}
-          >
-            Add Answer
-          </button>
-        </div>
+        {renderEditAnswers()}
   
         <div className="form-actions">
           <button type="submit" className="save-button">
