@@ -13,8 +13,7 @@ import { UserAnswerInput } from '../types/quiz/UserAnswerInput';
 import { Routes } from '../constants/routes';
 import QuizNavigationButtons from './QuizNavigationButtons';
 import { useAuth } from '../hooks/AuthProvider';
-import queryString from 'query-string';
-import { useLocation } from 'react-router-dom';
+import { useQueryCategories } from '../hooks/useQueryCategories';
 
 interface UserAnswerState {
   answer: Answer | null;
@@ -32,13 +31,7 @@ const QuestionPage: FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
 
-  const location = useLocation(); // url in web browser
-  const parsed = queryString.parse(location.search, { arrayFormat: "bracket" }); // Parse arrays in query string
-  const categories = Array.isArray(parsed.category)
-    ? (parsed.category as string[])
-    : parsed.category
-    ? [parsed.category as string]
-    : null;
+  const { categories } = useQueryCategories();
 
   if (loading) return <div className="loading-container">Loading questions...</div>;
   if (error) return <div className="loading-container">{error}</div>;
@@ -77,8 +70,6 @@ const QuestionPage: FC = () => {
       categories: categories,
       userAnswers: userAnswersInput,
     };
-
-    console.log(createQuizData);
 
     try {
       setSubmitting(true);

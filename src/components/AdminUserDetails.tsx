@@ -91,7 +91,6 @@ const AdminUserDetails: FC = () => {
                 email: formData.email,
                 admin: formData.admin,
             };
-            console.log('Updated Data:', updatedData);
             const response: AxiosResponse<User> = await updateAdminUserById(Number(id), updatedData);
             setUser(response.data);
             setFormData(response.data);
