@@ -36,7 +36,7 @@ const MyQuizzes: FC = () => {
                     >
                         <div className="quiz-header">
                             <div className="quiz-punctuation">Score: {quiz.punctuation}%</div>
-                            <div className="quiz-category">Category: {quiz.category}</div>
+                            <div className="quiz-category">Category: {quiz.categories.join(', ')}</div>
                         </div>
                         <div className="quiz-remarks">Remarks: {quiz.remarks}</div>
                     </li>

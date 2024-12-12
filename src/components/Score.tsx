@@ -1,9 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import './Score.css';
-import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { ScoreProps } from '../types/score/ScoreProps';
 import { Question } from '../types/question/Question';
-import { Answer } from '../types/answer/Answer';
 import ResultItem from './ResultItem';
 
 const Score: FC<ScoreProps> = ({ questions, userAnswers, result }) => {
@@ -15,7 +13,7 @@ const Score: FC<ScoreProps> = ({ questions, userAnswers, result }) => {
 				<article className="score-summary">
 						<p>You scored:</p>
 						<div className="score-number">
-								<span>{result?.punctuation}%</span>
+								<span>{result?.punctuation.toFixed(2)}%</span>  {/** Round number to 2 decimals */}
 						</div>
 						<div className="progress-bar">
 								<div
