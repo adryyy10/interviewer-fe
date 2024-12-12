@@ -82,8 +82,8 @@ export const signup = (data: SignupData): Promise<AxiosResponse<AuthResponse>> =
     return api.post<AuthResponse>(Routes.Signup, data, getContentTypeConfig());
 };
 
-export const createQuiz = async (data: CreateQuizData): Promise<AxiosResponse<CreateQuizResponse>> => {
-    return api.post<CreateQuizResponse>(Routes.Quizzes, data, getConfig());
+export const createQuiz = async (quizData: Omit<CreateQuizData, 'id'>): Promise<AxiosResponse<CreateQuizResponse>> => {
+    return api.post<CreateQuizResponse>(Routes.Quizzes, quizData, getConfig());
 };
 
 export const createFeedback = async (feedbackData: Omit<FeedbackData, 'id'>): Promise<AxiosResponse<CreateFeedbackResponse>> => {

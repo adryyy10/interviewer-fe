@@ -4,6 +4,6 @@ export interface CreateQuizResponse {
     id: number;
     punctuation: number;
     remarks: string;
-    category: string;
+    categories: string[] | null;
     userAnswers: UserAnswerInput[];
 }

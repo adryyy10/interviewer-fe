@@ -31,7 +31,7 @@ const MyQuizDetail: FC = () => {
       <section>
         <div className="quiz-info">
           <p><strong>Score:</strong> {quiz.punctuation}%</p>
-          <p><strong>Category:</strong> {quiz.category}</p>
+          <p><strong>Category:</strong> {quiz.categories.join(', ')}</p>
           <p><strong>Remarks:</strong> {quiz.remarks}</p>
           <p><strong>Date:</strong> {new Date(quiz.createdAt).toLocaleDateString()}</p>
         </div>

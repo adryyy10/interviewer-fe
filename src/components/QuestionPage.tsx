@@ -8,12 +8,13 @@ import { UseFetchQuestionsResponse } from '../types/question/UseFetchQuestionsRe
 import { calculateQuizResult } from '../utils/quizUtils';
 import { QuizResult } from '../types/quiz/QuizResult';
 import { createQuiz } from '../services/api';
-import useQuery from '../hooks/useQuery';
 import { CreateQuizData } from '../types/quiz/CreateQuizData';
 import { UserAnswerInput } from '../types/quiz/UserAnswerInput';
 import { Routes } from '../constants/routes';
 import QuizNavigationButtons from './QuizNavigationButtons';
 import { useAuth } from '../hooks/AuthProvider';
+import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
 
 interface UserAnswerState {
   answer: Answer | null;
@@ -31,8 +32,13 @@ const QuestionPage: FC = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
 
-  const query = useQuery();
-  const category = query.get('category')?.toLowerCase() || 'all';
+  const location = useLocation(); // url in web browser
+  const parsed = queryString.parse(location.search, { arrayFormat: "bracket" }); // Parse arrays in query string
+  const categories = Array.isArray(parsed.category)
+    ? (parsed.category as string[])
+    : parsed.category
+    ? [parsed.category as string]
+    : null;
 
   if (loading) return <div className="loading-container">Loading questions...</div>;
   if (error) return <div className="loading-container">{error}</div>;
@@ -49,28 +55,30 @@ const QuestionPage: FC = () => {
     });
   };
 
-  const userAnswersInput: UserAnswerInput[] = userAnswers.map((userAnswer, index) => {
-    const questionId = questions[index].id;
-    const selectedAnswerId = userAnswer.answer?.id;
-
-    return {
-      question: `${Routes.AdminQuestions}/${questionId}`,
-      answer: `${Routes.Answers}/${selectedAnswerId}`,
-    };
-  });
-
   const handleFinishQuiz = async () => {
     const result: QuizResult = calculateQuizResult(
       questions,
       userAnswers.map((userAnswerState) => userAnswerState.answer).filter((answer): answer is Answer => answer !== null)
     );
 
+    const userAnswersInput: UserAnswerInput[] = userAnswers.map((userAnswer, index) => {
+      const questionId = questions[index].id;
+      const selectedAnswerId = userAnswer.answer?.id;
+  
+      return {
+        question: `${Routes.AdminQuestions}/${questionId}`,
+        answer: `${Routes.Answers}/${selectedAnswerId}`,
+      };
+    });
+
     const createQuizData: CreateQuizData = {
-      punctuation: result.punctuation,
+      punctuation: result.punctuation | 0,
       remarks: result.remarks,
-      category: category,
+      categories: categories,
       userAnswers: userAnswersInput,
     };
+
+    console.log(createQuizData);
 
     try {
       setSubmitting(true);
