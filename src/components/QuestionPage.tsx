@@ -67,9 +67,11 @@ const QuestionPage: FC = () => {
     const createQuizData: CreateQuizData = {
       punctuation: result.punctuation | 0,
       remarks: result.remarks,
-      categories: categories,
+      categories: categories ?? ['all'],
       userAnswers: userAnswersInput,
     };
+
+    console.log(createQuizData);
 
     try {
       setSubmitting(true);
