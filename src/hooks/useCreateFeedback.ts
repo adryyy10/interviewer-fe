@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FeedbackData } from "../types/question/FeedbackData";
+import { FeedbackData } from "../types/feedback/FeedbackData";
 import { createFeedback } from '../services/api';
 
 interface UseCreateFeedbackResult {

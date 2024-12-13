@@ -2,6 +2,7 @@
   width: 90%;
   max-width: 800px;
   padding: 30px 40px;
+  margin-top: 40px;
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: var(--border-radius);

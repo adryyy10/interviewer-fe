@@ -1,0 +1,78 @@
+@import url("AdminTable.css");
+
+.feedback-admin-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--admin-background-color);
+  border: 1px solid var(--admin-border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-admin-title {
+  font-size: 1.8rem;
+  color: var(--admin-text-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.feedback-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.feedback-add-button {
+  background-color: var(--admin-accent-color);
+  color: var(--soft-white);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.feedback-add-button:hover {
+  background-color: var(--admin-secondary-color);
+  transform: translateY(-2px);
+}
+
+.error-message {
+  color: var(--admin-error-color);
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feedback-admin-title {
+      font-size: 1.5rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+      font-size: 14px;
+      padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-admin-container {
+      padding: 15px 10px;
+      margin: 10px auto;
+  }
+
+  .feedback-add-button {
+      padding: 8px 16px;
+      font-size: 14px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+      font-size: 12px;
+      padding: 6px;
+  }
+}
