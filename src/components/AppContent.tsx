@@ -21,7 +21,7 @@ import './AppContent.css';
 import NotFound from './NotFound';
 import MyQuizzes from './MyQuizzes';
 import MyQuizDetail from './MyQuizDetail';
-import FeedbackForm from './FeedbackForm';
+import AdminFeedbackList from './AdminFeedbackList';
 
 const AppContent: FC = () => {
     const location = useLocation();
@@ -48,7 +48,7 @@ const AppContent: FC = () => {
                         <Route path={AppRoutes.AdminUsers} element={<AdminUsers />} />
                         <Route path={AppRoutes.AdminUserDetails} element={<AdminUserDetails />} />
                         <Route path={AppRoutes.AdminQuestions} element={<AdminQuestions />} />
-                        <Route path={AppRoutes.AdminFeedback} element={<FeedbackForm />} />
+                        <Route path={AppRoutes.AdminFeedback} element={<AdminFeedbackList />} />
                         <Route path={AppRoutes.AdminQuestionDetails} element={<AdminQuestionDetails />} />
                         <Route path={AppRoutes.CreateQuestion} element={<CreateQuestionForm />} />
                         <Route path={AppRoutes.Dashboard} element={<Dashboard />} />

@@ -11,7 +11,8 @@ import { HydraMemberResponse } from "../types/api/HydraMemberResponse";
 import { CreateQuizData } from "../types/quiz/CreateQuizData";
 import { CreateQuizResponse } from "../types/api/CreateQuizResponse";
 import { CreateFeedbackResponse } from "../types/api/CreateFeedbackResponse";
-import { FeedbackData } from "../types/question/FeedbackData";
+import { FeedbackData } from "../types/feedback/FeedbackData";
+import { Feedback } from "../types/feedback/Feedback";
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -52,6 +53,8 @@ const getPatchConfig = () => ({
 export const Auth = (encodedCredentials: string): Promise<AxiosResponse<AuthResponse>> => {
     return api.get<AuthResponse>(Routes.Auth, getBasicConfig(encodedCredentials));
 };
+
+export const fetchAdminFeedback = (): Promise<AxiosResponse<HydraMemberResponse<Feedback>>> => api.get(Routes.AdminFeedback, getConfig());
 
 export const fetchAdminQuestions = (): Promise<AxiosResponse<HydraMemberResponse<Question>>> => api.get(Routes.AdminQuestions, getConfig());
 
